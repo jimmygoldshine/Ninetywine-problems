@@ -1,9 +1,10 @@
-
-<%#= react_component 'Wines', {data: @wines} %>
-
 <body>
-  <h1> Hello </h1>
-  <% @wines.each do |wine| %>
-    <%= wine.name %>
-  <% end %>
+  <form>
+    <label>
+      Name:
+      <input type="text" name="name" />
+    </label>
+    <input type="submit" value="Submit" />
+  </form>
+  <%= react_component 'Wines', {data: @wines} %>
 </body>
