@@ -1,2 +1,0 @@
-class Wine < ApplicationRecord
-end
