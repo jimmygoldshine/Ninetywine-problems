@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sweet: 1.5
+  herby: 1.5
+  bitter: 1.5
+  fruity: 1.5
+  oaky: 1.5
+  alcohol: 1.5
+  acid: 1.5
+
+two:
+  name: MyString
+  sweet: 1.5
+  herby: 1.5
+  bitter: 1.5
+  fruity: 1.5
+  oaky: 1.5
+  alcohol: 1.5
+  acid: 1.5
