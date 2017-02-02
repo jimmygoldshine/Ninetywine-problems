@@ -4,6 +4,7 @@ class Pairing < ApplicationRecord
     @food = food
     get_sweet_wine(wine_klass) if is_sweet_food?
     get_umami_wine(wine_klass) if is_umami_food?
+    get_spicy_wine(wine_klass) if is_spicy_food?
   end
 
   def is_sweet_food?
@@ -14,6 +15,14 @@ class Pairing < ApplicationRecord
     @food.umami > 3.4
   end
 
+  def is_spicy_food?
+    @food.spicy > 3.4
+  end
+
+  def get_spicy_wine(wine_klass)
+    @wine = wine_klass.where('2.6 < sweet < 5 and fruity > 5.1 and acid > 5.1')
+  end
+
   def get_sweet_wine(wine_klass)
     @wine = wine_klass.where('sweet > 5.1')
   end
@@ -21,5 +30,7 @@ class Pairing < ApplicationRecord
   def get_umami_wine(wine_klass)
     @wine = wine_klass.where('sweet > 5.1 and bitter < 2.5 and fruity > 5.1')
   end
+
+
 
 end
