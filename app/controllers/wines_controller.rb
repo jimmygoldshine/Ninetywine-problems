@@ -5,7 +5,6 @@ class WinesController < ApplicationController
       @wine = Wine.find_by(name: params[:q])
       redirect_to wine_path(@wine.id)
     end
-
   end
 
   def show
