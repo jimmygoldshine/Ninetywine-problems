@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  umami: 1.5
+  sweet: 1.5
+  spicy: 1.5
+  sour: 1.5
+  bitter: 1.5
+  fat: 1.5
+
+two:
+  name: MyString
+  umami: 1.5
+  sweet: 1.5
+  spicy: 1.5
+  sour: 1.5
+  bitter: 1.5
+  fat: 1.5
