@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jimmygoldshine/Ninetywine-problems.png?label=ready&title=Ready)](https://waffle.io/jimmygoldshine/Ninetywine-problems)
 # README
 
 This README would normally document whatever steps are necessary to get the
