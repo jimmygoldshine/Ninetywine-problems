@@ -1,20 +1,21 @@
 class WinesController < ApplicationController
 
   def index
-    @wines = Wine.all
-    @sweet_wine = Wine.where('sweet > 5.1')
-    render component: 'Wines', props: { wines: @wines }
+    if params[:q]
+      @wine = Wine.find_by(name: params[:q])
+      redirect_to wine_path(@wine.id)
+    end
+
   end
 
   def show
-    @wine = Wine.find_by(name: wine_params[:q])
-    erb :'show/:id'
+    @wine = Wine.find(params[:id])
   end
 
   private
 
   def wine_params
-    params.permit(:q)
+    params.require(:wine).permit(:q, :id, :name)
   end
 
 end
