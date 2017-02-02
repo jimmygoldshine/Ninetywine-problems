@@ -1,11 +1,11 @@
 class WinesController < ApplicationController
 
   def index
-    puts params
     if params[:q]
       @wine = Wine.find_by(name: params[:q])
       redirect_to wine_path(@wine.id)
     end
+
   end
 
   def show
