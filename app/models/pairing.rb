@@ -2,9 +2,9 @@ class Pairing < ApplicationRecord
 
   has_one :food
 
-  def initialize(food)
-    @food = food
-  end
+  # def initialize(food)
+  #   @food = food
+  # end
 
   def is_sweet_food?
     @food.sweet > 3.0
