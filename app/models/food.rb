@@ -1,7 +1,8 @@
 class Food < ApplicationRecord
 
   validates :sweet, :name, presence: true
-  validates :sweet, inclusion: [0..5]
+  validates_numericality_of :sweet, :greater_than_or_equal_to => 0
+  validates_numericality_of :sweet, :less_than_or_equal_to => 5
 
   # def initialize(args, pairing_klass)
   #   pairing_klass.new(self)
