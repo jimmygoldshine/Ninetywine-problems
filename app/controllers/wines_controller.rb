@@ -2,6 +2,7 @@ class WinesController < ApplicationController
 
   def index
     @wines = Wine.all
+    @sweet_wine = Wine.where('sweet > 5.1')
     render component: 'Wines', props: { wines: @wines }
   end
 
