@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Pairing do
 
   let!(:wine_klass)  {spy('wine_klass')}
-  let!(:pairing)  {described_class.new(double('cake', sweet: 5, umami: 0, spicy:0), wine_klass)}
+  let!(:pairing)  {described_class.new(double('cake', sweet: 5, umami: 0, spicy:0, bitter:0), wine_klass)}
 
   it 'instantiates with a food object' do
     expect(pairing).to be_an_instance_of Pairing
@@ -21,9 +21,9 @@ describe Pairing do
 
   describe 'umami food & wine' do
 
-    let!(:bacon_pairing)  {described_class.new(double('bacon', umami: 5, sweet: 0, spicy:0), wine_klass)}
+    let!(:bacon_pairing)  {described_class.new(double('bacon', umami: 5, sweet: 0, spicy:0, bitter:0), wine_klass)}
 
-    it 'checks the level of food umami level' do
+    it 'checks the level of food umami' do
       expect(bacon_pairing.is_umami_food?).to eq true
     end
 
@@ -34,9 +34,9 @@ describe Pairing do
 
   describe 'spicy food & wine' do
 
-    let!(:spicy_pairing)  {described_class.new(double('spicy', umami: 0, sweet: 0, spicy:4), wine_klass)}
+    let!(:spicy_pairing)  {described_class.new(double('spicy', umami: 0, sweet: 0, spicy:4, bitter:0), wine_klass)}
 
-    it 'checks the level of food spicy level' do
+    it 'checks the level of food spicyness' do
       expect(spicy_pairing.is_spicy_food?).to eq true
     end
 
@@ -44,4 +44,18 @@ describe Pairing do
       expect(wine_klass).to have_received(:where).with('2.6 < sweet < 5 and fruity > 5.1 and acid > 5.1')
     end
   end
+
+  describe 'bitter food & wine' do
+
+    let!(:bitter_pairing)  {described_class.new(double('bitter', umami: 0, sweet: 0, spicy:4, bitter:4), wine_klass)}
+
+    it 'checks the level of food bitterness' do
+      expect(bitter_pairing.is_spicy_food?).to eq true
+    end
+
+    it 'gets spicy wine from the database' do
+      expect(wine_klass).to have_received(:where).with('bitter < 2.5 and oaky < 2.5')
+    end
+  end
+
 end
