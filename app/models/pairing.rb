@@ -1,8 +1,9 @@
 class Pairing < ApplicationRecord
 
-  def initialize(food, wine_klass)
+  has_one :food
+
+  def initialize(food)
     @food = food
-    get_sweet_wine(wine_klass) if is_sweet_food?
   end
 
   def is_sweet_food?

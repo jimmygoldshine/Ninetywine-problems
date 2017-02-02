@@ -4,7 +4,8 @@ describe Pairing do
 
 
   let!(:wine_klass)  {spy('wine_klass')}
-  let!(:pairing)  {described_class.new(double('cake', sweet: 5), wine_klass)}
+  let!(:cake) { double('cake', sweet:5) }
+  let!(:pairing)  {described_class.new(cake)}
 
   it 'instantiates with a food object' do
     expect(pairing).to be_an_instance_of Pairing
@@ -16,8 +17,10 @@ describe Pairing do
     end
 
     it 'gets sweet wine from the database' do
+      pairing.get_sweet_wine(wine_klass)
       expect(wine_klass).to have_received(:where).with('sweet > 5.1')
     end
   end
+
 
 end
