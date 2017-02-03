@@ -6,8 +6,6 @@ class FoodsController < ApplicationController
 
   def new
     @pairing = Pairing.find(params[:pairing_id])
-    p @pairing
-    p params
     @food = Food.new
   end
 

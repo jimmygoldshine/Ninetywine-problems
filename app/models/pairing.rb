@@ -1,5 +1,7 @@
 class Pairing < ApplicationRecord
 
+  attr_accessor :wine
+
   has_one :food
 
   # def initialize(food)
@@ -7,7 +9,7 @@ class Pairing < ApplicationRecord
   # end
 
   def is_sweet_food?
-    @food.sweet > 3.0
+    food.sweet > 3.0
   end
 
   def get_sweet_wine(wine_klass)
