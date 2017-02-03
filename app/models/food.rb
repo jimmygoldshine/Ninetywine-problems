@@ -31,7 +31,7 @@ class Food < ApplicationRecord
   private
 
     def all_others_weak?(flavour)
-      food_flavours = [ self.spicy, self.sweet, self.umami, self.bitter, self.sour]
+      food_flavours = [self.spicy, self.sweet, self.umami, self.bitter, self.sour].compact
       food_flavours.slice!(food_flavours.index(flavour))
       food_flavours.all? {|rating| rating < WEAK_FLAVOUR_CHECK}
     end

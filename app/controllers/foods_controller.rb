@@ -14,6 +14,7 @@ class FoodsController < ApplicationController
     @food = Food.create(food_params)
     @food.pairing_id = @pairing.id
     @food.save
+    @pairing.food_id = @food.id
     redirect_to pairing_path(@pairing)
   end
 
@@ -24,7 +25,7 @@ class FoodsController < ApplicationController
   # end
 
   def food_params
-    params.require(:food).permit(:name, :sweet, :pairing_id)
+    params.require(:food).permit(:name, :sweet, :umami, :sour, :bitter, :spicy, :pairing_id)
   end
 
 end
