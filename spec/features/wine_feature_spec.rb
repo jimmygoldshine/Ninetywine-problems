@@ -12,7 +12,6 @@ describe 'wine features' do
     fill_in :food_sour, with: 0
     fill_in :food_bitter, with: 0
     click_button "Submit"
-    save_and_open_page
     expect(page).to have_link('Sauternes')
     click_link('Sauternes')
     expect(page).to have_content 'Sauternes'
