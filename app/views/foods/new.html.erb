@@ -1,5 +1,5 @@
 <h2>Enter your food and it's characteristics</h2>
-<%= form_for @food do |f| %>
+<%= form_for [@pairing, @food] do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %>
 <%= f.label :sweet %>

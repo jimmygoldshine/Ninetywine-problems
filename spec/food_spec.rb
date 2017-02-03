@@ -20,6 +20,8 @@ describe Food do
     expect{ Food.new({name:"Sweeeeeeet", sweet:6}) }.not_to change{Food.count}
   end
 
+  it {should belong_to :pairing }
+
   # it "should create a new pairing object" do
   #   food = Food.new({name:"Dummy", sweet: 3}, pairing)
   #   expect(pairing).to have_received(:new).with(food)

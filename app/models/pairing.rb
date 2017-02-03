@@ -1,12 +1,15 @@
 class Pairing < ApplicationRecord
 
-  def initialize(food, wine_klass)
-    @food = food
-    get_sweet_wine(wine_klass) if is_sweet_food?
-  end
+  attr_accessor :wine
+
+  has_one :food
+
+  # def initialize(food)
+  #   @food = food
+  # end
 
   def is_sweet_food?
-    @food.sweet > 3.0
+    food.sweet > 3.0
   end
 
   def get_sweet_wine(wine_klass)

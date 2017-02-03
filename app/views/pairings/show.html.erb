@@ -1,0 +1,7 @@
+<h1><%= @pairing.id %></h1>
+<p><%= @pairing.food.name %></p>
+<ul>
+  <% @pairing.wine.each do |wine| %>
+  <li><%= wine.name %></li>
+  <% end %>
+</ul>
