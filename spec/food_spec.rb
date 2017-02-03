@@ -4,11 +4,6 @@ describe Food do
 
   let!(:food) {described_class.create}
 
-  before do
-    # @pairing = Pairing.create
-    # @food = Food.new(name:"Umami", sweet:2, umami:7, pairing_id:@pairing.id)
-  end
-
   it {should belong_to :pairing }
 
   it "should throw an error if you do not give it a name on initialization" do
@@ -26,6 +21,11 @@ describe Food do
   it "should throw an error if you do not give it a spicy value between 0 and 5 inclusive" do
     expect(food).to have(3).error_on(:spicy)
   end
+
+  it "should throw an error if you do not give it a sour value between 0 and 5 inclusive" do
+    expect(food).to have(3).error_on(:sour)
+  end
+
 
   describe 'checking the type of flavour' do
 
