@@ -9,8 +9,8 @@ feature 'food features' do
     expect(page).to have_css("input#food_name")
     expect(page).to have_css("input#food_sweet")
     expect(page).to have_css("input#food_umami")
+    expect(page).to have_css("input#food_spicy")
     expect(page).to have_button("Submit")
-
   end
 
   # scenario 'user clicks button to create food' do
