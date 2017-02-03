@@ -3,7 +3,7 @@ class Pairing < ApplicationRecord
   attr_accessor :wine
 
   has_one :food
-  
+
   def get_spicy_wine(wine_klass)
     @wine = wine_klass.where('2.6 < sweet < 5 and fruity > 5.1 and acid > 5.1')
   end

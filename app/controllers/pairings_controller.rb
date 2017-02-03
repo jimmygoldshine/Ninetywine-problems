@@ -5,8 +5,7 @@ class PairingsController < ApplicationController
 
   def show
     @pairing = Pairing.find(params[:id])
-    require 'pry'; binding.pry
-    @pairing.get_sweet_wine(Wine) if @pairing.food.is_sweet?
+    get_matched_wines(@pairing)
   end
 
   def new
@@ -22,4 +21,13 @@ class PairingsController < ApplicationController
     params.require(:pairing).permit(:id)
   end
 
+  private
+
+  def get_matched_wines(pairing)
+    pairing.get_sweet_wine(Wine) if pairing.food.is_sweet?
+    pairing.get_spicy_wine(Wine) if pairing.food.is_spicy?
+    pairing.get_sour_wine(Wine) if pairing.food.is_sour?
+    pairing.get_bitter_wine(Wine) if pairing.food.is_bitter?
+    pairing.get_umami_wine(Wine) if pairing.food.is_umami?
+  end
 end
