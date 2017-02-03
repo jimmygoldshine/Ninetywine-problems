@@ -2,6 +2,6 @@
 <p><%= @pairing.food.name %></p>
 <ul>
   <% @pairing.wine.each do |wine| %>
-  <li><%= wine.name %></li>
+  <li><%= link_to "#{wine.name}", wine_path(wine) %></li>
   <% end %>
 </ul>
