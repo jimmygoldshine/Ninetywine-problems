@@ -3,14 +3,17 @@ class PairingsController < ApplicationController
   def index
   end
 
+  def show
+    @pairing = Pairing.find(params[:id])
+  end
+
   def new
     @pairing = Pairing.new
   end
 
   def create
-    @food = Food.new
     @pairing = Pairing.create
-    redirect_to new_pairing_food_path(@pairing)
+    redirect_to "/pairings/#{@pairing.id}/foods/new"
   end
 
   def pairing_params
