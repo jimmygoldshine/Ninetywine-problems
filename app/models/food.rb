@@ -1,8 +1,9 @@
 class Food < ApplicationRecord
+  belongs_to :pairing
 
-  validates :sweet, :spicy, :sour, :bitter, :umami, :name, presence: true
-  validates_numericality_of :sweet, :spicy, :sour, :bitter, :umami, :greater_than_or_equal_to => 0
-  validates_numericality_of :sweet, :spicy, :sour, :bitter, :umami, :less_than_or_equal_to => 5
+  validates :sweet, :name, presence: true
+  validates_numericality_of :sweet, :greater_than_or_equal_to => 0
+  validates_numericality_of :sweet, :less_than_or_equal_to => 5
 
   DOMINANT_FLAVOUR_CHECK = 3.4
   WEAK_FLAVOUR_CHECK = 3

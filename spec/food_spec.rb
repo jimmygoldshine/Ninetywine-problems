@@ -50,4 +50,6 @@ describe Food do
 
   end
 
+  it {should belong_to :pairing }
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202141828) do
+ActiveRecord::Schema.define(version: 20170203101005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,15 @@ ActiveRecord::Schema.define(version: 20170202141828) do
     t.float    "fat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "pairing_id"
+    t.index ["pairing_id"], name: "index_foods_on_pairing_id", using: :btree
   end
 
   create_table "pairings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "food_id"
+    t.index ["food_id"], name: "index_pairings_on_food_id", using: :btree
   end
 
   create_table "wines", force: :cascade do |t|
@@ -45,4 +49,6 @@ ActiveRecord::Schema.define(version: 20170202141828) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "foods", "pairings"
+  add_foreign_key "pairings", "foods"
 end
