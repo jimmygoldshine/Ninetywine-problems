@@ -26,6 +26,10 @@ describe Food do
     expect(food).to have(3).error_on(:sour)
   end
 
+  it "should throw an error if you do not give it a bitter value between 0 and 5 inclusive" do
+    expect(food).to have(3).error_on(:bitter)
+  end
+
 
   describe 'checking the type of flavour' do
 

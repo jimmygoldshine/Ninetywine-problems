@@ -11,6 +11,7 @@ feature 'food features' do
     expect(page).to have_css("input#food_umami")
     expect(page).to have_css("input#food_spicy")
     expect(page).to have_css("input#food_sour")
+    expect(page).to have_css("input#food_bitter")
     expect(page).to have_button("Submit")
   end
 
