@@ -53,6 +53,7 @@ end
 group :test do
   gem 'pry'
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
   gem 'capybara'
   gem 'shoulda'
 end
