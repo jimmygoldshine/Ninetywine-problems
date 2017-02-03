@@ -1,16 +1,28 @@
 <h2>Enter your food and it's characteristics</h2>
 <%= form_for [@pairing, @food] do |f| %>
+<div class="form-group">
 <%= f.label :name %>
 <%= f.text_field :name %>
+<div>
+  <div class="form-group">
 <%= f.label :sweet %>
 <%= f.text_field :sweet %>
+</div>
+<div class="form-group">
 <%= f.label :umami %>
 <%= f.text_field :umami %>
+</div>
+<div class="form-group">
 <%= f.label :spicy %>
 <%= f.text_field :spicy %>
+</div>
+<div class="form-group">
 <%= f.label :sour %>
 <%= f.text_field :sour %>
+</div>
+<div class="form-group">
 <%= f.label :bitter %>
 <%= f.text_field :bitter %>
+<div>
 <%= f.submit "Submit" %>
 <% end %>
