@@ -29,5 +29,13 @@ class PairingsController < ApplicationController
     pairing.get_sour_wine(Wine) if pairing.food.is_sour?
     pairing.get_bitter_wine(Wine) if pairing.food.is_bitter?
     pairing.get_umami_wine(Wine) if pairing.food.is_umami?
+    pairing.get_umami_x_sweet_wine(Wine) if pairing.food.is_umami_x_sweet?
+    pairing.get_umami_x_sour_wine(Wine) if pairing.food.is_umami_x_sour?
+    pairing.get_umami_x_bitter_wine(Wine) if pairing.food.is_umami_x_bitter?
+    pairing.get_sweet_x_sour_wine(Wine) if pairing.food.is_sweet_x_sour?
+    pairing.get_sweet_x_bitter_wine(Wine) if pairing.food.is_sweet_x_bitter?
+    pairing.get_sweet_x_spicy_wine(Wine) if pairing.food.is_sweet_x_spicy?
+    pairing.get_sour_x_bitter_wine(Wine) if pairing.food.is_sour_x_bitter?
+    pairing.get_sour_x_spicy_wine(Wine) if pairing.food.is_sour_x_spicy?
   end
 end
