@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'wine features' do
 
-  scenario 'users clicks through to wine info from wine recommendations' do
+  it 'users clicks through to wine info from wine recommendations' do
     visit '/'
     click_button 'Start pairing!'
     fill_in :food_name, with: "A sweet food"
