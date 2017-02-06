@@ -2,17 +2,17 @@ require 'rails_helper'
 
 feature 'pairng with instances of food' do
 
-  scenario 'start using the site immediately' do
+  it 'start using the site immediately' do
     visit('/')
     expect(page).to have_button("Start pairing!")
   end
 
-  scenario 'create a new empty pairing' do
+  it 'create a new empty pairing' do
     visit('/pairings/new')
     expect{ click_button('Start pairing!') }.to change{Pairing.count}.by 1
   end
 
-  scenario 'a food form can be filled in' do
+  it 'a food form can be filled in' do
     visit('/pairings/new')
     click_button('Start pairing!')
     expect(page).to have_content("Enter your food and it's characteristics")
@@ -21,7 +21,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_button("Submit")
   end
 
-  scenario 'user is on a single results page and wants to go back to the home page to start again' do
+  it 'user is on a single results page and wants to go back to the home page to start again' do
     visit '/'
     click_button 'Start pairing'
     fill_in :food_name, with: "A sweet food"
@@ -35,7 +35,7 @@ feature 'pairng with instances of food' do
 
   end
 
-  scenario 'returns a list of wines for spicy food' do
+  it 'returns a list of wines for spicy food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Spicy'
@@ -48,7 +48,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Zinfandel")
   end
 
-  scenario 'returns a list of wines for sweet food' do
+  it 'returns a list of wines for sweet food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Sweet'
@@ -61,7 +61,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Riesling")
   end
 
-  scenario 'returns a list of wines for bitter food' do
+  it 'returns a list of wines for bitter food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Bitter'
@@ -74,7 +74,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Pinot Noir")
   end
 
-  scenario 'returns a list of wines for sour food' do
+  it 'returns a list of wines for sour food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Sour'
@@ -87,7 +87,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Grenache")
   end
 
-  scenario 'returns a list of wines for umami food' do
+  it 'returns a list of wines for umami food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -100,7 +100,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Sauvignon Blanc")
   end
 
-  scenario 'returns a list of wines for umami and sweet food' do
+  it 'returns a list of wines for umami and sweet food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -113,7 +113,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Pinotage")
   end
 
-  scenario 'returns a list of wines for umami and sour food' do
+  it 'returns a list of wines for umami and sour food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -126,7 +126,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Cava")
   end
 
-  scenario 'returns a list of wines for umami and bitter food' do
+  it 'returns a list of wines for umami and bitter food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -139,7 +139,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Gamay")
   end
 
-  scenario 'returns a list of wines for sweet and sour food' do
+  it 'returns a list of wines for sweet and sour food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -152,7 +152,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Zinfandel")
   end
 
-  scenario 'returns a list of wines for sweet and bitter food' do
+  it 'returns a list of wines for sweet and bitter food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -165,7 +165,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Beaujolias")
   end
 
-  scenario 'returns a list of wines for sweet and spicy food' do
+  it 'returns a list of wines for sweet and spicy food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -178,7 +178,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Zinfandel")
   end
 
-  scenario 'returns a list of wines for sour and bitter food' do
+  it 'returns a list of wines for sour and bitter food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
@@ -191,7 +191,7 @@ feature 'pairng with instances of food' do
     expect(page).to have_content("Lambrusco")
   end
 
-  scenario 'returns a list of wines for sour and spicy food' do
+  it 'returns a list of wines for sour and spicy food' do
     visit('/pairings/new')
     click_button('Start pairing!')
     fill_in 'Name', with: 'Umami'
