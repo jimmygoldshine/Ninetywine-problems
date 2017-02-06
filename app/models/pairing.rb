@@ -18,10 +18,6 @@ class Pairing < ApplicationRecord
 
   private
 
-  def get_bitter_wine(wine_klass)
-    @wine = wine_klass.where('bitter <= 2.5 and oaky <= 2.5')
-  end
-
   def get_sour_wine(wine_klass)
     @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and oaky <= 2.5')
   end
