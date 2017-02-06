@@ -21,25 +21,10 @@ class Food < ApplicationRecord
     strong_flavours.length < 2
   end
 
-  def is_sweet?
-     self.sweet >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.sweet)
+  def is_combined_flavour?
+    strong_flavours.length > 1
   end
 
-  def is_umami?
-    self.umami >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.umami)
-  end
-
-  def is_spicy?
-    self.spicy >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.spicy)
-  end
-
-  def is_bitter?
-    self.bitter >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.bitter)
-  end
-
-  def is_sour?
-    self.sour >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.sour)
-  end
 
   def is_umami_x_sweet?
     self.umami >= SECONDARY_FLAVOUR_CHECK && self.sweet >= SECONDARY_FLAVOUR_CHECK && three_others_weak?(self.umami, self.sweet)
@@ -74,6 +59,26 @@ class Food < ApplicationRecord
   end
 
   private
+
+    def is_sweet?
+      self.sweet >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.sweet)
+    end
+
+    def is_umami?
+      self.umami >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.umami)
+    end
+
+    def is_spicy?
+      self.spicy >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.spicy)
+    end
+
+    def is_bitter?
+      self.bitter >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.bitter)
+    end
+
+    def is_sour?
+      self.sour >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.sour)
+    end
 
     def food_flavour_ratings
       [self.spicy, self.sweet, self.umami, self.bitter, self.sour].compact
