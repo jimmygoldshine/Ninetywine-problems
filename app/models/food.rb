@@ -19,6 +19,8 @@ class Food < ApplicationRecord
     elsif is_combined_flavour?
       return :umami_x_sweet if is_umami_x_sweet?
       return :umami_x_sour if is_umami_x_sour?
+      return :umami_x_bitter if is_umami_x_bitter?
+      return :sweet_x_sour if is_sweet_x_sour?
 
     else
       return :variety
