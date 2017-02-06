@@ -11,6 +11,14 @@ class Food < ApplicationRecord
 
   def flavour
     return :sweet if is_sweet?
+    return :umami if is_umami?
+    return :spicy if is_spicy?
+    return :bitter if is_bitter?
+    return :sour if is_sour?
+  end
+
+  def is_single_flavour?
+    true
   end
 
   def is_sweet?
@@ -69,7 +77,7 @@ class Food < ApplicationRecord
 
     def four_others_weak?(flavour)
       food_flavours = [self.spicy, self.sweet, self.umami, self.bitter, self.sour].compact
-      food_flavours.slice!(food_flavours.index(flavour))
+      flavours = food_flavours.slice!(food_flavours.index(flavour))
       food_flavours.all? {|rating| rating <= WEAK_FLAVOUR_CHECK}
     end
 
