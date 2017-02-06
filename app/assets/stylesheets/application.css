@@ -13,3 +13,90 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+   font-family: 'Arvo-Regular';
+   src: url("fonts/arvo/Arvo-Regular.ttf") format("opentype");
+ }
+
+ a:link, a:visited {
+   color: white;
+   text-decoration: none;
+ }
+
+ #container {
+   height: 300px
+ }
+
+ h1 {
+   font-family: "Arvo-Regular";
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+ }
+
+ h2 {
+   color: white
+ }
+
+ .button {
+  display: inline;
+  position: relative;
+  float: left;
+  width: auto;
+  list-style-type: none;
+  background: #3faffa;
+  background-image: -webkit-linear-gradient(top, #3faffa, #35aaf2);
+  background-image: -moz-linear-gradient(top, #3faffa, #35aaf2);
+  background-image: -ms-linear-gradient(top, #3faffa, #35aaf2);
+  background-image: -o-linear-gradient(top, #3faffa, #35aaf2);
+  background-image: linear-gradient(to bottom, #3faffa, #35aaf2);
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: "Arvo-Regular";
+  color: #ffffff;
+  font-size: 20px;
+  margin: 20px 10px 20px 10px;
+  padding: 10px 20px 10px 20px;
+  border: solid #3e87b5 2px;
+  text-decoration: none;
+ }
+
+
+ body {
+   color: white;
+   background: url("visuel_home.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+ .form_submit {
+   display: block;
+   float: middle;
+   -webkit-transition-duration: 0.1s;
+   transition-duration: 1s;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 300px;
+   position: relative;
+   -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: "Arvo-Regular";
+    color: #a61f51;
+    font-size: 60px;
+    padding: 10px 20px 10px 20px;
+    border: solid #a61f51 2px;
+    text-decoration: none;
+    width: auto;
+    background-color: Transparent;
+    cursor: pointer;
+ }
+
+ .form_submit:hover {
+    background-color: Transparent;
+    color: white;
+  }
