@@ -9,6 +9,10 @@ class Food < ApplicationRecord
   SECONDARY_FLAVOUR_CHECK = 3
   WEAK_FLAVOUR_CHECK = 3
 
+  def flavour
+    return :sweet if is_sweet?
+  end
+
   def is_sweet?
      self.sweet >= DOMINANT_FLAVOUR_CHECK && four_others_weak?(self.sweet)
   end
