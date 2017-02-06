@@ -38,6 +38,13 @@ describe Pairing do
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
+    it 'should get umami wine from the db if the food is sour' do
+      allow(pairing).to receive(:food).and_return(umami_food)
+      pairing.get_wine(wine_klass)
+      criteria = 'sweet >= 5 and bitter <= 2.5 and fruity >= 5'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
   end
 
 end

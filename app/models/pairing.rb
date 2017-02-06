@@ -8,6 +8,7 @@ class Pairing < ApplicationRecord
     sweet: 'sweet >= 5',
     spicy: 'sweet >= 2.6 and sweet <= 5 and fruity >= 5.1 and acid >= 5.1 and alcohol <= 5',
     sour: 'sweet >= 5 and bitter <= 2.5 and oaky <= 2.5',
+    umami: 'sweet >= 5 and bitter <= 2.5 and fruity >= 5',
   }
 
   def get_wine(wine_klass)
