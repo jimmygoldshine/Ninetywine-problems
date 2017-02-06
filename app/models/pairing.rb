@@ -41,11 +41,11 @@ class Pairing < ApplicationRecord
   end
 
   def get_sweet_x_bitter_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and fruit >= 4 and acid >= 7.5')
+    @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and fruity >= 4 and acid >= 7.5')
   end
 
   def get_sweet_x_spicy_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 5 and herby <= 2.5 and fruit >= 4.5 and acid >= 7.5')
+    @wine = wine_klass.where('sweet >= 5 and herby <= 2.5 and fruity >= 4.5 and acid >= 7.5')
   end
 
   def get_sour_x_bitter_wine(wine_klass)
