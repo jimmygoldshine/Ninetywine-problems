@@ -86,6 +86,11 @@ describe Food do
       expect(food.flavour).to eq :sweet_x_sour
     end
 
+    it 'returns :sweet_x_bitter for food with strong sweet and bitter flavours' do
+      food = Food.new({name:"Sweet & Sour", umami: 0, sweet: 5, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
+      expect(food.flavour).to eq :sweet_x_bitter
+    end
+
   end
 
   describe '#is_single_flavour?' do
