@@ -40,6 +40,7 @@ class Pairing < ApplicationRecord
       umami_x_sweet: 'fruity >= 5 and acid >= 2.6 and acid <= 5',
       umami_x_sour: 'oaky <= 5 and acid >= 7.5',
       umami_x_bitter: 'bitter <= 2.5 and oaky <= 2.5',
+      sweet_x_sour: 'sweet >= 5 and acid >= 7.5',
     }
-    
+
 end
