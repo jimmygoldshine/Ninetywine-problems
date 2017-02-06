@@ -4,7 +4,7 @@ feature 'food features' do
 
   scenario 'have the opportunity to add your food and the characteristics of said food' do
     visit('/pairings/new')
-    click_button('Submit')
+    click_button('Start pairing!')
     expect(page).to have_content("Enter your food and it's characteristics")
     expect(page).to have_css("input#food_name")
     expect(page).to have_css("input#food_sweet")

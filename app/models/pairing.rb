@@ -53,6 +53,6 @@ class Pairing < ApplicationRecord
   end
 
   def get_sour_x_spicy_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and alocohol <= 5')
+    @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and alcohol <= 5')
   end
 end
