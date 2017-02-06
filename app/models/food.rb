@@ -18,7 +18,7 @@ class Food < ApplicationRecord
   end
 
   def is_single_flavour?
-    true
+    strong_flavours.length < 2
   end
 
   def is_sweet?
@@ -74,6 +74,14 @@ class Food < ApplicationRecord
   end
 
   private
+
+    def food_flavour_ratings
+      [self.spicy, self.sweet, self.umami, self.bitter, self.sour].compact
+    end
+
+    def strong_flavours
+      food_flavour_ratings.select { |flavour| flavour >= 3.5 }
+    end
 
     def four_others_weak?(flavour)
       food_flavours = [self.spicy, self.sweet, self.umami, self.bitter, self.sour].compact

@@ -68,22 +68,30 @@ describe Food do
 
   end
 
-  # describe '#is_single_flavour?' do
-  #
-  #   before do
-  #     @pairing = Pairing.create
-  #   end
-  #
-  #   it "returns true if a food has a single strong flavour" do
-  #     food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-  #     expect(food.is_single_flavour?).to be_truthy
-  #   end
-  #
-  #   it "returns false if a food has > 1 strong flavour" do
-  #     food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-  #     expect(food.is_single_flavour?).to be_falsey
-  #   end
-  #
-  # end
+  describe '#is_single_flavour?' do
+
+    before do
+      @pairing = Pairing.create
+    end
+
+    it "returns true if a food has a single strong flavour" do
+      food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.is_single_flavour?).to be_truthy
+    end
+
+    it "returns false if a food has > 1 strong flavour" do
+      food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.is_single_flavour?).to be_falsey
+    end
+
+  end
+
+  describe '#is_combined_flavour?' do
+
+    before do
+      @pairing = Pairing.create
+    end
+
+  end
 
 end
