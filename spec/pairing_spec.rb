@@ -108,6 +108,13 @@ describe Pairing do
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
+    it 'should be able to get wine appropriate for sour and spicy food' do
+      allow(pairing).to receive(:food).and_return(sour_x_spicy_food)
+      pairing.get_wine(wine_klass)
+      criteria = 'sweet >= 5 and bitter <= 2.5 and alcohol <= 5'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
   end
 
 end
