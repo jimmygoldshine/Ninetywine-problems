@@ -4,13 +4,17 @@ class Pairing < ApplicationRecord
 
   has_one :food
 
-  def get_spicy_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 2.6 and sweet <= 5 and fruity >= 5.1 and acid >= 5.1 and alcohol <= 5')
+  MATCHES = {
+    sweet: 'sweet >= 5',
+    spicy: 'sweet >= 2.6 and sweet <= 5 and fruity >= 5.1 and acid >= 5.1 and alcohol <= 5',
+    sour: 'sweet >= 5 and bitter <= 2.5 and oaky <= 2.5',
+  }
+
+  def get_wine(wine_klass)
+    @wine = wine_klass.where(MATCHES[food.flavour])
   end
 
-  def get_sweet_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 5')
-  end
+  private
 
   def get_umami_wine(wine_klass)
     @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and fruity >= 5')
