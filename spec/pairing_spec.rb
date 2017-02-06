@@ -8,7 +8,17 @@ describe Pairing do
   let!(:sour_food) { double("Sour Food", flavour: :sour) }
   let!(:bitter_food) { double("Bitter Food", flavour: :bitter) }
   let!(:umami_food) { double("Umami Food", flavour: :umami) }
+
   let!(:umami_x_sweet_food) { double("Umami & Sweet Food", flavour: :umami_x_sweet) }
+  let!(:umami_x_sour_food) { double("Umami & Sour Food", flavour: :umami_x_sour) }
+  let!(:umami_x_bitter_food) { double("Umami & Bitter Food", flavour: :umami_x_bitter) }
+
+  let!(:sweet_x_sour_food) { double("Sweet & Sour Food", flavour: :sweet_x_sour) }
+  let!(:sweet_x_bitter_food) { double("Sweet & Bitter Food", flavour: :sweet_x_bitter) }
+  let!(:sweet_x_spicy_food) { double("Sweet & Spicy Food", flavour: :sweet_x_spicy) }
+
+  let!(:sour_x_bitter_food) { double("Sour & Bitter Food", flavour: :sour_x_bitter) }
+  let!(:sour_x_spicy_food) { double("Sour & Spicy Food", flavour: :sour_x_spicy) }
 
   subject(:pairing) { described_class.new }
 
@@ -53,6 +63,13 @@ describe Pairing do
       allow(pairing).to receive(:food).and_return(umami_x_sweet_food)
       pairing.get_wine(wine_klass)
       criteria = 'fruity >= 5 and acid >= 2.6 and acid <= 5'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
+    it 'should be able to get wine appropriate for umami and sour food' do
+      allow(pairing).to receive(:food).and_return(umami_x_sour_food)
+      pairing.get_wine(wine_klass)
+      criteria = 'oaky <= 5 and acid >= 7.5'
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
