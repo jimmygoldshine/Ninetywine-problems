@@ -23,5 +23,4 @@ class PairingsController < ApplicationController
     params.require(:pairing).permit(:id)
   end
 
-
 end
