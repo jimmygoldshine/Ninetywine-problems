@@ -10,16 +10,11 @@ class Pairing < ApplicationRecord
     sour: 'sweet >= 5 and bitter <= 2.5 and oaky <= 2.5',
     umami: 'sweet >= 5 and bitter <= 2.5 and fruity >= 5',
     bitter: 'bitter <= 2.5 and oaky <= 2.5',
+    umami_x_sweet: 'fruity >= 5 and acid >= 2.6 and acid <= 5',
   }
 
   def get_wine(wine_klass)
     @wine = wine_klass.where(MATCHES[food.flavour])
-  end
-
-  private
-
-  def get_sour_wine(wine_klass)
-    @wine = wine_klass.where('sweet >= 5 and bitter <= 2.5 and oaky <= 2.5')
   end
 
   def get_umami_x_sweet_wine(wine_klass)
