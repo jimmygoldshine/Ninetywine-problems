@@ -24,6 +24,7 @@ class Food < ApplicationRecord
       return :sweet_x_bitter if is_sweet_x_bitter?
       return :sweet_x_spicy if is_sweet_x_spicy?
       return :sour_x_bitter if is_sour_x_bitter?
+      return :sour_x_spicy if is_sour_x_spicy?
 
     else
       return :variety
