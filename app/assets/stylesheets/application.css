@@ -35,6 +35,10 @@ h1 {
    text-align: center;
  }
 
+ h2 {
+   color: white
+ }
+
 .logo-container {
   float: right;
 }
