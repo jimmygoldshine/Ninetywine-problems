@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery-ui/widgets/slider
 //= require jquery_ujs
-//= require components
 //= require_tree .
