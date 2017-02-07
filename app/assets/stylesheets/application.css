@@ -1,45 +1,45 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
 
- @font-face {
-   font-family: 'Arvo-Regular';
-   src: url("fonts/arvo/Arvo-Regular.ttf") format("opentype");
- }
+@font-face {
+  font-family: 'Arvo-Regular';
+  src: url("fonts/arvo/Arvo-Regular.ttf") format("opentype");
+}
 
- a:link, a:visited {
-   color: white;
-   text-decoration: none;
- }
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
 
- #container {
-   height: 300px
- }
+#container {
+  height: 300px
+}
 
- h1 {
-   font-family: "Arvo-Regular";
-   margin-left: auto;
-   margin-right: auto;
-   text-align: center;
- }
+h1 {
+  font-family: "Arvo-Regular";
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
- h2 {
-   color: white
- }
+h2 {
+  color: white
+}
 
- .button {
+.button {
   display: inline;
   position: relative;
   float: left;
@@ -61,42 +61,42 @@
   padding: 10px 20px 10px 20px;
   border: solid #3e87b5 2px;
   text-decoration: none;
- }
+}
 
 
- body {
-   color: white;
-   background: url("visuel_home.jpeg") no-repeat center center fixed;
+body {
+  color: white;
+  background: url("visuel_home.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
- .form_submit {
-   display: block;
-   float: middle;
-   -webkit-transition-duration: 0.1s;
-   transition-duration: 1s;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 300px;
-   position: relative;
-   -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-    font-family: "Arvo-Regular";
-    color: #a61f51;
-    font-size: 60px;
-    padding: 10px 20px 10px 20px;
-    border: solid #a61f51 2px;
-    text-decoration: none;
-    width: auto;
-    background-color: Transparent;
-    cursor: pointer;
- }
+.form_submit {
+  display: block;
+  float: middle;
+  -webkit-transition-duration: 0.1s;
+  transition-duration: 1s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: "Arvo-Regular";
+  color: #a61f51;
+  font-size: 60px;
+  padding: 10px 20px 10px 20px;
+  border: solid #a61f51 4px;
+  text-decoration: none;
+  width: auto;
+  background-color: #fdfdfd;
+  cursor: pointer;
+}
 
- .form_submit:hover {
-    background-color: Transparent;
-    color: white;
-  }
+.form_submit:hover {
+  background-color: Transparent;
+  color: white;
+}
