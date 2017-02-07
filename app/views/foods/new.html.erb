@@ -1,7 +1,7 @@
 <h2>Tell us about your food</h2>
 <%= form_for [@pairing, @food] do |f| %>
 <%= f.label :name %>
-<%= f.text_field :name %>
+<%= f.text_field :name, required: true %>
 <div id="sweet">
   <%= f.label :sweet %>
   <%= f.range_field :sweet, min: 0, max: 5, step: 0.1 %>
