@@ -14,11 +14,6 @@
 *= require_self
 */
 
-@font-face {
-  font-family: 'Arvo-Regular';
-  src: url("fonts/arvo/Arvo-Regular.ttf") format("opentype");
-}
-
 body {
   position: relative;
   background-image: url('/assets/background-image.jpg');
@@ -29,13 +24,14 @@ body {
 }
 
 h1 {
-   font-family: "Arvo-Regular";
+   font-family: 'Arvo', serif;
    margin-left: auto;
    margin-right: auto;
    text-align: center;
  }
 
  h2 {
+   font-family: 'Arvo', serif;
    color: white
  }
 
@@ -67,9 +63,14 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #722f37;
-  color: white;
-  padding: 14px 25px;
+  color: #ffffff;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
+  border-radius: 8px;
+  font-family: 'Arvo', serif;
+  font-size: 20px;
+  margin: 20px 10px 20px 10px;
+  padding: 10px 20px 10px 20px;
+  border: solid #3e87b5 2px;
+  text-decoration: none
 }
