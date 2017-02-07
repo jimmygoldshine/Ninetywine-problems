@@ -15,7 +15,7 @@ feature 'pairng with instances of food' do
   it 'a food form can be filled in' do
     visit('/pairings/new')
     click_button('Start pairing!')
-    expect(page).to have_content("Enter your food and it's characteristics")
+    expect(page).to have_content("Tell us about your food")
     expect(page).to have_css("input#food_name")
     expect(page).to have_css("input#food_sweet")
     expect(page).to have_button("Submit")

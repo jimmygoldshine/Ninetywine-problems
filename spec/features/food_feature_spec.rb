@@ -5,7 +5,7 @@ feature 'food features' do
   scenario 'enter only the name of your food' do
     visit('/pairings/new')
     click_button('Start pairing!')
-    expect(page).to have_content("What food are you pairing wine with?")
+    expect(page).to have_content("Tell us about your food")
     expect(page).to have_css("input#food_name")
   end
 

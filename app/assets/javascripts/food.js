@@ -7,8 +7,8 @@ $(document).ready(function() {
 
   var i = 0
   $("#next-button").click(function() {
-    if (foodCharacteristics[i] == "#bitter") {
       $(foodCharacteristics[i]).show( "fade" );
+      if (foodCharacteristics[i] == "#bitter") {
       $(this).hide();
       $("#submit-button").show( "fade" );
     } else {
@@ -16,5 +16,3 @@ $(document).ready(function() {
       i++;
     };
   });
-
-});
