@@ -2,17 +2,19 @@ require 'rails_helper'
 
 feature 'food features' do
 
-  scenario 'have the opportunity to add your food and the characteristics of said food' do
+  scenario 'enter only the name of your food' do
     visit('/pairings/new')
     click_button('Start pairing!')
-    expect(page).to have_content("Enter your food and it's characteristics")
+    expect(page).to have_content("What food are you pairing wine with?")
     expect(page).to have_css("input#food_name")
+  end
+
+  scenario 'sweetness field appears' do
+    visit('/pairings/new')
+    click_button('Start pairing!')
+    fill_in "Name", with: "Sweet potato"
+    click_button('Next')
     expect(page).to have_css("input#food_sweet")
-    expect(page).to have_css("input#food_umami")
-    expect(page).to have_css("input#food_spicy")
-    expect(page).to have_css("input#food_sour")
-    expect(page).to have_css("input#food_bitter")
-    expect(page).to have_button("Submit")
   end
 
 end
