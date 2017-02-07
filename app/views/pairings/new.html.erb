@@ -1,7 +1,1 @@
-<div class='new-pairing-button-container'>
-  <%= form_for @pairing do |f| %>
-  <div class='new-pairing-button'>
-    <%= f.submit "Start pairing!" %>
-  </div>
-  <% end %>
-</div>
+<%= link_to 'Start pairing!', @pairing, class: 'start-pairing' %>
