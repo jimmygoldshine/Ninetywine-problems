@@ -6,7 +6,7 @@ class Pairing < ApplicationRecord
 
 
   def get_wine(wine_klass)
-    @wine = wine_klass.where(MATCHES[food.flavour])
+    @wine = wine_klass.where(MATCHES[food.flavour]).limit(3)
   end
 
   private
