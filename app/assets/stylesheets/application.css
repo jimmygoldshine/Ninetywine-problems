@@ -14,24 +14,46 @@
 *= require_self
 */
 
+body {
+  position: relative;
+  background-image: url('/assets/background-image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+  }
+
 .logo-container {
   float: right;
 }
 
 .logo {
+  position: inherit;
   margin-top: 15px;
   width: 200px;
-  position: inherit;
 }
 
-.new-pairing-button-container {
-  width: 100px;
-  height: 50px;
+.backround-container {
+  float: bottom;
 }
 
-.new-pairing-button {
+.background-image {
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.start-pairing {
+  display: block;
+  float: middle;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #842A2C;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
