@@ -6,6 +6,7 @@ class PairingsController < ApplicationController
   def show
     @pairing = Pairing.find(params[:id])
     @pairing.get_wine(Wine)
+    @wine = @pairing.wine
   end
 
   def new
