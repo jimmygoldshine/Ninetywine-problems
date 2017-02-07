@@ -2,15 +2,26 @@
 <%= form_for [@pairing, @food] do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %>
-<%= f.label :sweet %>
-<%= f.text_field :sweet %>
-<%= f.label :umami %>
-<%= f.text_field :umami %>
-<%= f.label :spicy %>
-<%= f.text_field :spicy %>
-<%= f.label :sour %>
-<%= f.text_field :sour %>
-<%= f.label :bitter %>
-<%= f.text_field :bitter %>
-<%= f.submit "Submit" %>
+<div id="sweet">
+  <%= f.label :sweet, id: "sweet-label" %>
+  <%= f.text_field :sweet, id: "sweet-field" %>
+</div>
+<div id="umami">
+  <%= f.label :umami %>
+  <%= f.text_field :umami %>
+</div>
+<div id="spicy">
+  <%= f.label :spicy %>
+  <%= f.text_field :spicy %>
+</div>
+<div id="sour">
+  <%= f.label :sour %>
+  <%= f.text_field :sour %>
+</div>
+<div id="bitter">
+  <%= f.label :bitter %>
+  <%= f.text_field :bitter %>
+</div>
+<%= f.submit "Submit", id: "submit-button" %>
 <% end %>
+<button id="next-button">Next</button>
