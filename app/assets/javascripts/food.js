@@ -1,17 +1,19 @@
 $(document).ready(function() {
+  var foodCharacteristics = ["#sweet", "#umami", "#spicy", "#sour", "#bitter"];
   $("#submit-button").hide();
-  $("#sweet").hide();
-  $("#umami").hide();
-  $("#sour").hide();
-  $("#bitter").hide();
-  $("#spicy").hide();
-
-  // add an element to the dom
-  // a button called 'next'
-  $("#next-button").click(function() {
-    $("#sweet").show()
+  foodCharacteristics.forEach(function(element) {
+    $(element).hide();
   });
-  // when you press it, it appends a form field
-  // to the dom, deletes the old next button
-  // and writes a new one in
+
+  var i = 0
+  $("#next-button").click(function() {
+    if (foodCharacteristics[i] == "#bitter") {
+      $(this).hide();
+      $("#submit-button").show( "fade" );
+    } else {
+      $(foodCharacteristics[i]).show( "fade" );
+      i++;
+    };
+  });
+
 });
