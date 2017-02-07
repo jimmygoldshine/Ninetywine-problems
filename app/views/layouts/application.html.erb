@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NinetywineProblems</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>NinetywineProblems</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <div class='logo-container'>
+  <header>
+    <img src='/assets/Picture1.png' class='logo' />
+  </header>
+</div>
+  <%= yield %>
+</body>
 </html>
