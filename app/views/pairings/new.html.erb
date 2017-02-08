@@ -1,1 +1,3 @@
-<%= link_to 'Start pairing!', @pairing, class: 'start-pairing' %>
+<%= form_for @pairing do |f| %>
+<%= f.submit "Start pairing!", class: 'start-pairing' %>
+<% end %>
