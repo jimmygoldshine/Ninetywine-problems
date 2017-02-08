@@ -1,3 +1,19 @@
-// Place all the styles related to the Pairings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.start-pairing {
+  display: block;
+  float: middle;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #722f37;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  font-family: 'Arvo', serif;
+  font-size: 19px;
+  text-shadow: 2px 2px #b64d5a;
+  margin: 20px 10px 20px 10px;
+  padding: 10px 15px 10px 15px;
+  border: solid #56242a 4px;
+  text-decoration: none
+}
