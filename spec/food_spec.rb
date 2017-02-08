@@ -36,112 +36,144 @@ describe Food do
       @pairing = Pairing.create
     end
 
-    it 'returns :sweet for a food with sweetness > 3.5' do
-      food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sweet
+    it 'returns 5 when given a food with a sweetness level of 5' do
+      food = Food.create({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.flavour[:sweet]).to eq 5
     end
 
-    it 'does not return :sweet for food with sweetness < 3.5' do
-      food = Food.new({name: 'Food', umami: 1, sweet: 3.4, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.flavour).not_to eq :sweet
+    it 'returns 3 when given a food with an umami level of 5' do
+      food = Food.create({name: 'Food', umami: 5, sweet: 3, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.flavour[:sweet]).to eq 3
     end
 
-    it 'returns :umami for food with umami > 3.5' do
-      food = Food.new({name:"Umami", umami: 5, sweet: 0, spicy:0, bitter:0, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :umami
+    it 'returns 5 when given a food with a sweetness level of 5' do
+      food = Food.create({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.flavour[:umami]).to eq 5
     end
 
-    it 'returns :spicy for food with spicy > 3.5' do
-      food = Food.new({name:"Spicy", umami: 0, sweet: 0, spicy:5, bitter:0, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :spicy
+    it 'returns 5 when given a food with a spicyness level of 5' do
+      food = Food.create({name: 'Food', umami: 1, sweet: 5, spicy:5, bitter:1, sour:1, pairing_id:@pairing.id})
+      expect(food.flavour[:spicy]).to eq 5
     end
 
-    it 'returns :bitter for food with bitter > 3.5' do
-      food = Food.new({name:"Bitter", umami: 0, sweet: 0, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :bitter
+    it 'returns 5 when given a food with a bitter level of 5' do
+      food = Food.create({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:5, sour:1, pairing_id:@pairing.id})
+      expect(food.flavour[:bitter]).to eq 5
     end
 
-    it 'returns :sour for food with sour > 3.5' do
-      food = Food.new({name:"Sour", umami: 0, sweet: 0, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sour
-    end
-
-    it 'returns :umami_x_sweet for food with strong umami and sweet flavours' do
-      food = Food.new({name:"Umami & Sweet", umami: 5, sweet: 5, spicy:0, bitter:0, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :umami_x_sweet
-    end
-
-    it 'returns :umami_x_sour for food with strong umami and sour flavours' do
-      food = Food.new({name:"Umami & Sour", umami: 5, sweet: 0, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :umami_x_sour
-    end
-
-    it 'returns :umami_x_bitter for food with strong umami and bitter flavours' do
-      food = Food.new({name:"Umami & Bitter", umami: 5, sweet: 0, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :umami_x_bitter
-    end
-
-    it 'returns :sweet_x_sour for food with strong sweet and sour flavours' do
-      food = Food.new({name:"Sweet & Sour", umami: 0, sweet: 5, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sweet_x_sour
-    end
-
-    it 'returns :sweet_x_bitter for food with strong sweet and bitter flavours' do
-      food = Food.new({name:"Sweet & Bitter", umami: 0, sweet: 5, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sweet_x_bitter
-    end
-
-    it 'returns :sweet_x_spicy for food with strong sweet and spicy flavours' do
-      food = Food.new({name:"Sweet & Spicy", umami: 0, sweet: 5, spicy:5, bitter:0, sour:0, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sweet_x_spicy
-    end
-
-    it 'returns :sour_x_bitter for food with strong sour and bitter flavours' do
-      food = Food.new({name:"Sour & Bitter", umami: 0, sweet: 0, spicy:0, bitter:5, sour:5, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sour_x_bitter
-    end
-
-    it 'returns :sour_x_spicy for food with strong sour and spicy flavours' do
-      food = Food.new({name:"Sour & Bitter", umami: 0, sweet: 0, spicy:5, bitter:0, sour:5, pairing_id:@pairing.id})
-      expect(food.flavour).to eq :sour_x_spicy
+    it 'returns 5 when given a food with a sourness level of 5' do
+      food = Food.create({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:5, pairing_id:@pairing.id})
+      expect(food.flavour[:sour]).to eq 5
     end
 
   end
 
-  describe '#is_single_flavour?' do
-
-    before do
-      @pairing = Pairing.create
-    end
-
-    it "returns true if a food has a single strong flavour" do
-      food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.is_single_flavour?).to be_truthy
-    end
-
-    it "returns false if a food has > 1 strong flavour" do
-      food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.is_single_flavour?).to be_falsey
-    end
-
-  end
-
-  describe '#is_combined_flavour?' do
-
-    before do
-      @pairing = Pairing.create
-    end
-
-    it 'returns true if a food has >1 strong flavours' do
-      food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.is_combined_flavour?).to be_truthy
-    end
-
-    it 'returns false if a food has <2 strong flavours' do
-      food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
-      expect(food.is_combined_flavour?).to be_falsey
-    end
-
-  end
+  #   it 'returns :sweet for a food with sweetness > 3.5' do
+  #     food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sweet
+  #   end
+  #
+  #   it 'does not return :sweet for food with sweetness < 3.5' do
+  #     food = Food.new({name: 'Food', umami: 1, sweet: 3.4, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.flavour).not_to eq :sweet
+  #   end
+  #
+  #   it 'returns :umami for food with umami > 3.5' do
+  #     food = Food.new({name:"Umami", umami: 5, sweet: 0, spicy:0, bitter:0, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :umami
+  #   end
+  #
+  #   it 'returns :spicy for food with spicy > 3.5' do
+  #     food = Food.new({name:"Spicy", umami: 0, sweet: 0, spicy:5, bitter:0, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :spicy
+  #   end
+  #
+  #   it 'returns :bitter for food with bitter > 3.5' do
+  #     food = Food.new({name:"Bitter", umami: 0, sweet: 0, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :bitter
+  #   end
+  #
+  #   it 'returns :sour for food with sour > 3.5' do
+  #     food = Food.new({name:"Sour", umami: 0, sweet: 0, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sour
+  #   end
+  #
+  #   it 'returns :umami_x_sweet for food with strong umami and sweet flavours' do
+  #     food = Food.new({name:"Umami & Sweet", umami: 5, sweet: 5, spicy:0, bitter:0, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :umami_x_sweet
+  #   end
+  #
+  #   it 'returns :umami_x_sour for food with strong umami and sour flavours' do
+  #     food = Food.new({name:"Umami & Sour", umami: 5, sweet: 0, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :umami_x_sour
+  #   end
+  #
+  #   it 'returns :umami_x_bitter for food with strong umami and bitter flavours' do
+  #     food = Food.new({name:"Umami & Bitter", umami: 5, sweet: 0, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :umami_x_bitter
+  #   end
+  #
+  #   it 'returns :sweet_x_sour for food with strong sweet and sour flavours' do
+  #     food = Food.new({name:"Sweet & Sour", umami: 0, sweet: 5, spicy:0, bitter:0, sour:5, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sweet_x_sour
+  #   end
+  #
+  #   it 'returns :sweet_x_bitter for food with strong sweet and bitter flavours' do
+  #     food = Food.new({name:"Sweet & Bitter", umami: 0, sweet: 5, spicy:0, bitter:5, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sweet_x_bitter
+  #   end
+  #
+  #   it 'returns :sweet_x_spicy for food with strong sweet and spicy flavours' do
+  #     food = Food.new({name:"Sweet & Spicy", umami: 0, sweet: 5, spicy:5, bitter:0, sour:0, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sweet_x_spicy
+  #   end
+  #
+  #   it 'returns :sour_x_bitter for food with strong sour and bitter flavours' do
+  #     food = Food.new({name:"Sour & Bitter", umami: 0, sweet: 0, spicy:0, bitter:5, sour:5, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sour_x_bitter
+  #   end
+  #
+  #   it 'returns :sour_x_spicy for food with strong sour and spicy flavours' do
+  #     food = Food.new({name:"Sour & Bitter", umami: 0, sweet: 0, spicy:5, bitter:0, sour:5, pairing_id:@pairing.id})
+  #     expect(food.flavour).to eq :sour_x_spicy
+  #   end
+  #
+  # end
+  #
+  # describe '#is_single_flavour?' do
+  #
+  #   before do
+  #     @pairing = Pairing.create
+  #   end
+  #
+  #   it "returns true if a food has a single strong flavour" do
+  #     food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.is_single_flavour?).to be_truthy
+  #   end
+  #
+  #   it "returns false if a food has > 1 strong flavour" do
+  #     food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.is_single_flavour?).to be_falsey
+  #   end
+  #
+  # end
+  #
+  # describe '#is_combined_flavour?' do
+  #
+  #   before do
+  #     @pairing = Pairing.create
+  #   end
+  #
+  #   it 'returns true if a food has >1 strong flavours' do
+  #     food = Food.new({name: 'Food', umami: 5, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.is_combined_flavour?).to be_truthy
+  #   end
+  #
+  #   it 'returns false if a food has <2 strong flavours' do
+  #     food = Food.new({name: 'Food', umami: 1, sweet: 5, spicy:1, bitter:1, sour:1, pairing_id:@pairing.id})
+  #     expect(food.is_combined_flavour?).to be_falsey
+  #   end
+  #
+  # end
 
 end
