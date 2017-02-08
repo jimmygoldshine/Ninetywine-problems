@@ -1,16 +1,37 @@
-<h2>Enter your food and it's characteristics</h2>
+<h2>Tell us about your food</h2>
 <%= form_for [@pairing, @food] do |f| %>
 <%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :sweet %>
-<%= f.text_field :sweet %>
-<%= f.label :umami %>
-<%= f.text_field :umami %>
-<%= f.label :spicy %>
-<%= f.text_field :spicy %>
-<%= f.label :sour %>
-<%= f.text_field :sour %>
-<%= f.label :bitter %>
-<%= f.text_field :bitter %>
-<%= f.submit "Submit" %>
-<% end %>
+<%= f.text_field :name, required: true %>
+<div id="sweet">
+  Low <%= f.range_field :sweet, min: 0, max: 5, step: 0.1 %> High
+  <h3 class="flavour-name">Sweetness</h3>
+  <p class="flavour-description">Foods containing sugar, honey, and most fruits are sweet - but vegetables
+    like corn and squash can contribute sweetness too.</p>
+  </div>
+  <div id="umami">
+    Low <%= f.range_field :umami, min: 0, max: 5, step: 0.1 %> High
+    <h3 class="flavour-name">Umami</h3>
+    <p class="flavour-description">Umami is the taste of savoury. Mushrooms,
+      bacon, soy sauce and salt all contribute umami flavours.</p>
+    </div>
+    <div id="spicy">
+      Low <%= f.range_field :spicy, min: 0, max: 5, step: 0.1 %> High
+      <h3 class="flavour-name">Spiciness</h3>
+      <p class="flavour-description">This refers specifically to the 'hotness' of
+        the food, as contributed by chilli peppers, hot sauce, and so on.</p>
+      </div>
+      <div id="sour">
+        Low <%= f.range_field :sour, min: 0, max: 5, step: 0.1 %> High
+        <h3 class="flavour-name">Sourness</h3>
+        <p class="flavour-description">Contributed by citrus fruits, vinegars,
+        yoghurts and fresh tomatoes.</p>
+      </div>
+      <div id="bitter">
+        Low <%= f.range_field :bitter, min: 0, max: 5, step: 0.1 %> High
+        <h3 class="flavour-name">Bitterness</h3>
+        <p class="flavour-description">Leafy green vegetables, broccoli and
+          brussels sprouts all contribute bitter flavours.</p>
+      </div>
+      <%= f.submit "Submit", id: "submit-button" %>
+      <% end %>
+      <button id="next-button">Next</button>

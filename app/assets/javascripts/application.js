@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/widgets/slider
 //= require jquery_ujs
-//= require react
-//= require react_ujs
-//= require components
 //= require_tree .
