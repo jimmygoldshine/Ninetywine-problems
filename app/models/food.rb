@@ -10,25 +10,26 @@ class Food < ApplicationRecord
   WEAK_FLAVOUR_CHECK = 3
 
   def flavour
-    if is_single_flavour?
-      return :sweet if is_sweet?
-      return :umami if is_umami?
-      return :spicy if is_spicy?
-      return :bitter if is_bitter?
-      return :sour if is_sour?
-    elsif is_combined_flavour?
-      return :umami_x_sweet if is_umami_x_sweet?
-      return :umami_x_sour if is_umami_x_sour?
-      return :umami_x_bitter if is_umami_x_bitter?
-      return :sweet_x_sour if is_sweet_x_sour?
-      return :sweet_x_bitter if is_sweet_x_bitter?
-      return :sweet_x_spicy if is_sweet_x_spicy?
-      return :sour_x_bitter if is_sour_x_bitter?
-      return :sour_x_spicy if is_sour_x_spicy?
-
-    else
-      return :variety
-    end
+    {sweet: self.sweet, umami: self.umami, spicy: self.spicy, bitter: self.bitter, sour: self.sour}
+    # if is_single_flavour?
+    #   return :sweet if is_sweet?
+    #   return :umami if is_umami?
+    #   return :spicy if is_spicy?
+    #   return :bitter if is_bitter?
+    #   return :sour if is_sour?
+    # elsif is_combined_flavour?
+    #   return :umami_x_sweet if is_umami_x_sweet?
+    #   return :umami_x_sour if is_umami_x_sour?
+    #   return :umami_x_bitter if is_umami_x_bitter?
+    #   return :sweet_x_sour if is_sweet_x_sour?
+    #   return :sweet_x_bitter if is_sweet_x_bitter?
+    #   return :sweet_x_spicy if is_sweet_x_spicy?
+    #   return :sour_x_bitter if is_sour_x_bitter?
+    #   return :sour_x_spicy if is_sour_x_spicy?
+    #
+    # else
+    #   return :variety
+    # end
   end
 
   def is_single_flavour?
