@@ -1,19 +1,28 @@
 module PairingHelpers
 
-  DEFAULT_FOOD_VALUE = 0
+  FOOD_CHARACTERISTICS = [:name, :sweet, :umami, :spicy, :sour, :bitter]
 
   def start_pairing
     visit '/'
     click_button('Start pairing!')
   end
 
+  def make_pairing(args)
+    FOOD_CHARACTERISTICS.each do |char|
+      form_field = ("food_" << char.to_s).to_sym
+      fill_in form_field, with: args.fetch(char, default_value(char))
+    end
+  end
+
   def create_pairing(args)
-    fill_in :food_name, with: args.fetch(:name, "A food")
-    fill_in :food_sweet, with: args.fetch(:sweet, DEFAULT_FOOD_VALUE)
-    fill_in :food_umami, with: args.fetch(:umami, DEFAULT_FOOD_VALUE)
-    fill_in :food_spicy, with: args.fetch(:spicy, DEFAULT_FOOD_VALUE)
-    fill_in :food_sour, with: args.fetch(:sour, DEFAULT_FOOD_VALUE)
-    fill_in :food_bitter, with: args.fetch(:bitter, DEFAULT_FOOD_VALUE)
+    make_pairing(args)
+    click_button("Submit")
+  end
+
+  private
+
+  def default_value(characteristic)
+    characteristic == :name ? "A food" : 0
   end
 
 end
