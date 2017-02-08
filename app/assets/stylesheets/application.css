@@ -5,7 +5,7 @@
 
 body {
   position: relative;
-  background-image: url('/assets/background-image.jpg');
+  background-image: url('/assets/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -52,7 +52,7 @@ h1 {
 .logo {
   width: 200px;
   padding: -100% 0 0 0;
-  /*float: right;*/
+
 }
 
 .backround-container {
@@ -112,13 +112,11 @@ input#food_name {
   background-color: #722f37;
   color: #ffffff;
   text-align: center;
-  : 4px;
   font-family: 'Lato', serif;
-  font-size: 15px;
-  text-shadow: 2px 2px #b64d5a;
+  font-size: 10px;
   margin: 10px 5px 10px 5px;
   padding: 5px 15px 5px 15px;
-  border: solid #56242a 2px;
+  border: solid #56242a 0px;
   text-decoration: none
 }
 
@@ -130,6 +128,7 @@ input#food_name {
   right: 25%;
   white-space: nowrap;
   color: white;
+  font-size: 10px;
   font-family: 'Lato', serif;
 }
 

@@ -5,35 +5,35 @@
 <%= f.text_field :name, required: true, placeholder: "What are you eating?" %>
 <div id="sweet">
   <h3 class="flavour-name">S W E E T N E S S</h3>
-  <div class="slider"> Low <%= f.range_field :sweet, min: 0, max: 5, step: 0.1 %> High </div>
+  <div class="slider"> L O W <%= f.range_field :sweet, min: 0, max: 5, step: 0.1 %> H I G H </div>
   <div class="flavour-description"><p>Foods containing sugar, honey, and most fruits are sweet - but vegetables
     like corn and squash can contribute sweetness too.</p></div>
   </div>
   <div id="umami">
     <h3 class="flavour-name">U M A M I</h3>
-    <div class="slider"> Low <%= f.range_field :umami, min: 0, max: 5, step: 0.1 %> High </div>
+    <div class="slider"> L O W <%= f.range_field :umami, min: 0, max: 5, step: 0.1 %> H I G H </div>
     <div class="flavour-description"><p>Umami is the taste of savoury. Mushrooms,
       bacon, soy sauce and salt all contribute umami flavours.</p></div>
     </div>
     <div id="spicy">
       <h3 class="flavour-name">S P I C I N E S S</h3>
-      <div class="slider">Low <%= f.range_field :spicy, min: 0, max: 5, step: 0.1 %> High</div>
+      <div class="slider">L O W <%= f.range_field :spicy, min: 0, max: 5, step: 0.1 %> H I G H</div>
       <div class="flavour-description"><p>This refers specifically to the 'hotness' of
         the food, as contributed by chilli peppers, hot sauce, and so on.</p></div>
       </div>
       <div id="sour">
-        <h3 class="flavour-name">Sourness</h3>
-        <div class="slider">Low <%= f.range_field :sour, min: 0, max: 5, step: 0.1 %> High</div>
+        <h3 class="flavour-name">S O U R N E S S</h3>
+        <div class="slider">L O W <%= f.range_field :sour, min: 0, max: 5, step: 0.1 %> H I G H</div>
         <div class="flavour-description"><p>Contributed by citrus fruits, vinegars,
         yoghurts and fresh tomatoes.</p></div>
       </div>
       <div id="bitter">
-        <h3 class="flavour-name">Bitterness</h3>
-        <div class="slider">Low <%= f.range_field :bitter, min: 0, max: 5, step: 0.1 %> High</div>
+        <h3 class="flavour-name">B I T T E R N E S S</h3>
+        <div class="slider">L O W <%= f.range_field :bitter, min: 0, max: 5, step: 0.1 %> H I G H</div>
         <div class="flavour-description"><p>Leafy green vegetables, broccoli and
           brussels sprouts all contribute bitter flavours.</p></div>
       </div>
-      <%= f.submit "Submit", id: "submit-button" %>
+      <%= f.submit "S U B M I T", id: "submit-button" %>
       <% end %>
       <button id="next-button">N E X T</button>
 </div>
