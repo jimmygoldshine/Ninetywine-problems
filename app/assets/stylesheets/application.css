@@ -34,7 +34,7 @@ h1 {
  }
 
  h3 {
-   display: block;
+   display: inline-block;
    font-family: 'Lato', serif;
    color: white;
  }
@@ -200,4 +200,44 @@ a:link, a:visited {
 #wrapper {
   margin: 0 auto;
   width: 80%;
+}
+
+#sweet_value {
+  padding: 12px 0 0 0;
+  float: right;
+  color: white;
+  font-family: 'Lato', serif;
+}
+
+#umami_value {
+  padding: 12px 0 0 0;
+  float: right;
+  color: white;
+  font-family: 'Lato', serif;
+}
+
+#spicy_value {
+  padding: 12px 0 0 0;
+  float: right;
+  color: white;
+  font-family: 'Lato', serif;
+}
+
+#sour_value {
+  padding: 12px 0 0 0;
+  float: right;
+  color: white;
+  font-family: 'Lato', serif;
+}
+
+#bitter_value {
+  padding: 12px 0 0 0;
+  float: right;
+  color: white;
+  font-family: 'Lato', serif;
+}
+
+#title-container{
+  display: inline-block;
+  width: 100%
 }
