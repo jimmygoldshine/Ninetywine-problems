@@ -3,6 +3,10 @@ class Pairing < ApplicationRecord
   attr_accessor :wine
 
   FIRST_FLAVOUR_RANGE = 0.5
+  SECOND_FLAVOUR_RANGE = 0.75
+  THIRD_FLAVOUR_RANGE = 1
+  FOURTH_FLAVOUR_RANGE = 2.5
+  FIFTH_FLAVOUR_RANGE = 4
 
   has_one :food
 
