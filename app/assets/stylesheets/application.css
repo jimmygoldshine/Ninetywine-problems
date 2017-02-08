@@ -126,11 +126,12 @@ input#food_name {
   display: block;
   float: middle;
   position: relative;
-  left: 2%;
-  right: 25%;
+  left: 0%;
+  right: 0%;
   white-space: nowrap;
   color: white;
   font-family: 'Lato', serif;
+  font-size: 10px
 }
 
 .flavour-name {
@@ -200,6 +201,7 @@ a:link, a:visited {
 #wrapper {
   margin: 0 auto;
   width: 80%;
+  overflow: auto;
 }
 
 #sweet_value {
@@ -240,4 +242,8 @@ a:link, a:visited {
 #title-container{
   display: inline-block;
   width: 100%
+}
+
+#low {
+  float: left;
 }
