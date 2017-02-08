@@ -1,8 +1,13 @@
-<h1><%= @pairing.id %></h1>
-<p><%= @pairing.food.name %></p>
-<ul>
-  <% @pairing.wine.each do |wine| %>
-  <li><%= link_to "#{wine.name}", wine_path(wine) %></li>
-  <% end %>
-</ul>
-<%= link_to 'Start pairing again!', root_path %>
+<body>
+  <h2></h2>
+    <h1>Recommended wines for <%= @pairing.food.name.downcase %></h1>
+      <div id="container">
+      <ul>
+        <% @pairing.wine.each do |wine| %>
+        <li class="button"><%= link_to "#{wine.name}", wine_path(wine) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <button id='restart'><%= link_to 'New recommendation', root_path %></button>
+</body>
