@@ -2,15 +2,15 @@ class Pairing < ApplicationRecord
 
   attr_accessor :wine
 
-  has_one :food
+  FIRST_FLAVOUR_RANGE = 0.5
 
+  has_one :food
 
   def get_wine(wine_klass)
     if strongest_flavour == :sweet
-      food_flavours[:sweet] * 2
-      lower = (food_flavours[:sweet] * 2) - 0.5
-      upper = (food_flavours[:sweet] * 2) + 0.5
-      @wine = wine_klass.where("sweet >= #{lower} and sweet <= #{upper}")
+      @wine = wine_klass.where(sweet_query)
+    elsif strongest_flavour == :sour
+      @wine = wine_klass.where(sour_query)
     else
       @wine = wine_klass.where(MATCHES[food.flavour]).limit(3)
     end
@@ -29,6 +29,18 @@ class Pairing < ApplicationRecord
   end
 
   private
+
+  def sweet_query
+    lower = (food_flavours[:sweet] * 2) - FIRST_FLAVOUR_RANGE
+    upper = (food_flavours[:sweet] * 2) + FIRST_FLAVOUR_RANGE
+    "sweet >= #{lower} and sweet <= #{upper}"
+  end
+
+  def sour_query
+    lower = (food_flavours[:sour] * 2) - FIRST_FLAVOUR_RANGE
+    upper = (food_flavours[:sour] * 2) + FIRST_FLAVOUR_RANGE
+    "acid >= #{lower} and acid <= #{upper}"
+  end
 
   MATCHES = {
     sweet: 'sweet >= 5',

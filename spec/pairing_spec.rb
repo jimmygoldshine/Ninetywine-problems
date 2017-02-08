@@ -23,6 +23,7 @@ describe Pairing do
   #doubles created on Wed 8th Fev below
   let!(:sweet_potato) { double('Sweet potato', flavour: {sweet: 4, umami: 2.5, sour: 0, bitter: 0, spicy: 0 }) }
   let!(:mushrooms) { double('Mushrooms', flavour: {sweet: 0.5, umami: 5, sour: 0.5, bitter: 2, spicy: 0 }) }
+  let!(:ceviche) { double("Ceviche", flavour: {spicy: 3, umami: 3, sour: 4.5, bitter: 0.5, sweet: 0}) }
 
   subject(:pairing) { described_class.new }
 
@@ -124,6 +125,13 @@ describe Pairing do
       allow(pairing).to receive(:food).and_return(sweet_potato)
       pairing.get_wine(wine_klass)
       criteria = 'sweet >= 7.5 and sweet <= 8.5'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
+    it 'should return a narrow range of wine if the strongest value is sour' do
+      allow(pairing).to receive(:food).and_return(ceviche)
+      pairing.get_wine(wine_klass)
+      criteria = 'acid >= 8.5 and acid <= 9.5'
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
