@@ -22,8 +22,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'user is on a single results page and wants to go back to the home page to start again' do
-    visit '/'
-    click_button 'Start pairing'
+    start_pairing
     fill_in :food_name, with: "A sweet food"
     fill_in :food_sweet, with: 4
     fill_in :food_umami, with: 0
@@ -36,8 +35,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Spicy'
     fill_in 'Spicy', with: 5
     fill_in'Sweet', with: 0
@@ -49,8 +47,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sweet food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Sweet'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 5
@@ -62,8 +59,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Bitter'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -75,8 +71,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Sour'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -88,8 +83,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for umami food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -101,8 +95,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for umami and sweet food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 3
@@ -114,8 +107,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for umami and sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -127,8 +119,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for umami and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -140,8 +131,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sweet and sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 3
@@ -153,8 +143,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sweet and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 3
@@ -166,8 +155,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sweet and spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 3
     fill_in'Sweet', with: 3
@@ -179,8 +167,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sour and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 0
     fill_in'Sweet', with: 0
@@ -192,8 +179,7 @@ feature 'pairng with instances of food' do
   end
 
   it 'returns a list of wines for sour and spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
+    start_pairing
     fill_in 'Name', with: 'Umami'
     fill_in 'Spicy', with: 3
     fill_in'Sweet', with: 0
