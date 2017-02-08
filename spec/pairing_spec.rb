@@ -20,6 +20,10 @@ describe Pairing do
   let!(:sour_x_bitter_food) { double("Sour & Bitter Food", flavour: :sour_x_bitter) }
   let!(:sour_x_spicy_food) { double("Sour & Spicy Food", flavour: :sour_x_spicy) }
 
+  #doubles created on Wed 8th Fev below
+  let!(:sweet_potato) { double('Sweet potato', flavour: {sweet: 4, umami: 2.5, sour: 0, bitter: 0, spicy: 0 }) }
+  let!(:mushrooms) { double('Mushrooms', flavour: {sweet: 0.5, umami: 5, sour: 0.5, bitter: 2, spicy: 0 }) }
+
   subject(:pairing) { described_class.new }
 
   describe "#get_wine" do
@@ -114,7 +118,41 @@ describe Pairing do
       criteria = 'sweet >= 5 and bitter <= 2.5 and alcohol <= 5'
       expect(wine_klass).to have_received(:where).with(criteria)
     end
+  end
 
+  describe 'checking food characteristics' do
+
+    it 'is able to determine when sweet is the strongest food characteristic' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
+      expect(pairing.strongest_flavour).to eq :sweet
+    end
+
+    it 'is able to determine when umami is the strongest food characteristic' do
+      allow(pairing).to receive(:food).and_return(mushrooms)
+      expect(pairing.strongest_flavour).to eq :umami
+    end
+
+  end
+
+  describe '#food_flavours' do
+
+    it 'is able to determine when sweet is the strongest food characteristic' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
+      expect(pairing.food_flavours).to eq({sweet: 4, umami: 2.5, sour: 0, bitter: 0, spicy: 0})
+    end
+  end
+
+  describe '#strongest_flavour_value' do
+
+    it 'returns 4 when checking the value of the sweet potato double' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
+      expect(pairing.strongest_flavour_value).to eq 4
+    end
+
+    it 'returns 4 when checking the value of the sweet potato double' do
+      allow(pairing).to receive(:food).and_return(mushrooms)
+      expect(pairing.strongest_flavour_value).to eq 5
+    end
   end
 
 end
