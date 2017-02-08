@@ -28,96 +28,105 @@ describe Pairing do
 
   describe "#get_wine" do
 
-    it 'should get sweet wine from the db if the food is sweet' do
-      allow(pairing).to receive(:food).and_return(sweet_food)
-      pairing.get_wine(wine_klass)
-      criterion = 'sweet >= 5'
-      expect(wine_klass).to have_received(:where).with('sweet >= 5')
-    end
+    # it 'should get sweet wine from the db if the food is sweet' do
+    #   allow(pairing).to receive(:food).and_return(sweet_food)
+    #   pairing.get_wine(wine_klass)
+    #   criterion = 'sweet >= 5'
+    #   expect(wine_klass).to have_received(:where).with('sweet >= 5')
+    # end
+    #
+    # it 'should get spicy wine from the db if the food is spicy' do
+    #   allow(pairing).to receive(:food).and_return(spicy_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 2.6 and sweet <= 5 and fruity >= 5.1 and acid >= 5.1 and alcohol <= 5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should get sour wine from the db if the food is sour' do
+    #   allow(pairing).to receive(:food).and_return(sour_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and bitter <= 2.5 and oaky <= 2.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should get umami wine from the db if the food is umami' do
+    #   allow(pairing).to receive(:food).and_return(umami_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and bitter <= 2.5 and fruity >= 5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should get bitter wine from the db if the food is bitter' do
+    #   allow(pairing).to receive(:food).and_return(bitter_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'bitter <= 2.5 and oaky <= 2.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for umami and sweet food' do
+    #   allow(pairing).to receive(:food).and_return(umami_x_sweet_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'fruity >= 5 and acid >= 2.6 and acid <= 5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for umami and sour food' do
+    #   allow(pairing).to receive(:food).and_return(umami_x_sour_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'oaky <= 5 and acid >= 7.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for umami and bitter food' do
+    #   allow(pairing).to receive(:food).and_return(umami_x_bitter_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'bitter <= 2.5 and oaky <= 2.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for sweet and sour food' do
+    #   allow(pairing).to receive(:food).and_return(sweet_x_sour_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and acid >= 7.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for sweet and bitter food' do
+    #   allow(pairing).to receive(:food).and_return(sweet_x_bitter_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and bitter <= 2.5 and fruity >= 4 and acid >= 7.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for sweet and spicy food' do
+    #   allow(pairing).to receive(:food).and_return(sweet_x_spicy_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and herby <= 2.5 and fruity >= 4.5 and acid >= 7.5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for sour and bitter food' do
+    #   allow(pairing).to receive(:food).and_return(sour_x_bitter_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'oaky <= 2.5 and bitter <= 2.5 and acid >= 5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
+    #
+    # it 'should be able to get wine appropriate for sour and spicy food' do
+    #   allow(pairing).to receive(:food).and_return(sour_x_spicy_food)
+    #   pairing.get_wine(wine_klass)
+    #   criteria = 'sweet >= 5 and bitter <= 2.5 and alcohol <= 5'
+    #   expect(wine_klass).to have_received(:where).with(criteria)
+    # end
 
-    it 'should get spicy wine from the db if the food is spicy' do
-      allow(pairing).to receive(:food).and_return(spicy_food)
+
+    it 'should return a narrow range of wine if the strongest value is sweet' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
       pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 2.6 and sweet <= 5 and fruity >= 5.1 and acid >= 5.1 and alcohol <= 5'
+      criteria = 'sweet >= 7.5 and sweet <= 8.5'
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
-    it 'should get sour wine from the db if the food is sour' do
-      allow(pairing).to receive(:food).and_return(sour_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and bitter <= 2.5 and oaky <= 2.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should get umami wine from the db if the food is umami' do
-      allow(pairing).to receive(:food).and_return(umami_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and bitter <= 2.5 and fruity >= 5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should get bitter wine from the db if the food is bitter' do
-      allow(pairing).to receive(:food).and_return(bitter_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'bitter <= 2.5 and oaky <= 2.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for umami and sweet food' do
-      allow(pairing).to receive(:food).and_return(umami_x_sweet_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'fruity >= 5 and acid >= 2.6 and acid <= 5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for umami and sour food' do
-      allow(pairing).to receive(:food).and_return(umami_x_sour_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'oaky <= 5 and acid >= 7.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for umami and bitter food' do
-      allow(pairing).to receive(:food).and_return(umami_x_bitter_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'bitter <= 2.5 and oaky <= 2.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for sweet and sour food' do
-      allow(pairing).to receive(:food).and_return(sweet_x_sour_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and acid >= 7.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for sweet and bitter food' do
-      allow(pairing).to receive(:food).and_return(sweet_x_bitter_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and bitter <= 2.5 and fruity >= 4 and acid >= 7.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for sweet and spicy food' do
-      allow(pairing).to receive(:food).and_return(sweet_x_spicy_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and herby <= 2.5 and fruity >= 4.5 and acid >= 7.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for sour and bitter food' do
-      allow(pairing).to receive(:food).and_return(sour_x_bitter_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'oaky <= 2.5 and bitter <= 2.5 and acid >= 5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should be able to get wine appropriate for sour and spicy food' do
-      allow(pairing).to receive(:food).and_return(sour_x_spicy_food)
-      pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 5 and bitter <= 2.5 and alcohol <= 5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
   end
 
   describe 'checking food characteristics' do
