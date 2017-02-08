@@ -9,6 +9,18 @@ class Pairing < ApplicationRecord
     @wine = wine_klass.where(MATCHES[food.flavour]).limit(3)
   end
 
+  def strongest_flavour
+    food_flavours.key(food_flavours.values.max)
+  end
+
+  def food_flavours
+    self.food.flavour
+  end
+
+  def strongest_flavour_value
+    food_flavours[strongest_flavour]
+  end
+
   private
 
     MATCHES = {
