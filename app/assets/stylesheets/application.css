@@ -3,6 +3,21 @@
 *= require_self
 */
 
+#logo-container {
+  display: inline-block;
+  position: fixed;
+  left: -2px;
+  top: -2px;
+  width: 101%;
+  background-color: #ececec;
+  z-index: +1;
+}
+
+.logo {
+  float: right;
+  width: 200px;
+}
+
 body {
   position: relative;
   background-image: url('/assets/background-image.jpg');
@@ -10,6 +25,22 @@ body {
   background-size: cover;
   background-attachment: fixed;
   z-index: -1;
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 80%;
+  overflow-x: visible;
+}
+
+.backround-container {
+  float: bottom;
+}
+
+.background-image {
+  width: auto;
+  height: auto;
+  position: relative;
 }
 
 h1 {
@@ -39,31 +70,6 @@ h1 {
    color: white;
  }
 
-.logo-container {
-  position: fixed;
-  text-align: right;
-  top: 0px;
-  right: 0px;
-  padding: 0% 0 0 0;
-  z-index: +1;
-
-}
-
-.logo {
-  width: 200px;
-  padding: -100% 0 0 0;
-  /*float: right;*/
-}
-
-.backround-container {
-  float: bottom;
-}
-
-.background-image {
-  width: auto;
-  height: auto;
-  position: relative;
-}
 
 label {
   font-family: 'Lato', serif;
@@ -112,13 +118,11 @@ input#food_name {
   background-color: #722f37;
   color: #ffffff;
   text-align: center;
-  : 4px;
   font-family: 'Lato', serif;
   font-size: 15px;
-  text-shadow: 2px 2px #b64d5a;
-  margin: 10px 5px 10px 5px;
+  margin: 12px 5px 10px 0px;
   padding: 5px 15px 5px 15px;
-  border: solid #56242a 2px;
+  border: solid #56242a 0px;
   text-decoration: none
 }
 
@@ -148,60 +152,12 @@ input#food_name {
   font-size: 12px;
 }
 
-a:link, a:visited {
-  color: white;
-  text-decoration: none;
-}
-
-.button {
-  display: inline;
-  position: relative;
-  left: 0%;
-  width: auto;
-  text-align: center;
-  list-style-type: none;
-  background: #3faffa;
-  background-image: -webkit-linear-gradient(top, #3faffa, #35aaf2);
-  background-image: -moz-linear-gradient(top, #3faffa, #35aaf2);
-  background-image: -ms-linear-gradient(top, #3faffa, #35aaf2);
-  background-image: -o-linear-gradient(top, #3faffa, #35aaf2);
-  background-image: linear-gradient(to bottom, #3faffa, #35aaf2);
-  font-family: 'Lato', serif;
-  color: #ffffff;
-  font-size: 15px;
-  margin: 10px 0px 10px 0px;
-  padding: 5px 5px 5px 5px;
-  text-decoration: none;
-}
-
 #container {
   width: 100%;
   height: 100%;
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
-}
-
-#restart {
-  display: block;
-  float: middle;
-  position: fixed;
-  bottom: 10%;
-  left: 25%;
-  background-color: #722f37;
-  color: #ffffff;
-  font-family: 'Lato', serif;
-  font-size: 15px;
-  text-shadow: 2px 2px #b64d5a;
-  border: solid #56242a 2px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-#wrapper {
-  margin: 0 auto;
-  width: 80%;
-  overflow: auto;
 }
 
 #sweet_value {
@@ -242,8 +198,4 @@ a:link, a:visited {
 #title-container{
   display: inline-block;
   width: 100%
-}
-
-#low {
-  float: left;
 }

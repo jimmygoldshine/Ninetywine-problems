@@ -1,8 +1,8 @@
-<body>
+<div id=wrapper>
   <h2></h2>
     <h1>Recommended wines for <%= @pairing.food.name.downcase %></h1>
       <div id="container">
-      <ul>
+      <ul id="wine-list">
         <% @pairing.wine.each do |wine| %>
         <li class="button"><%= link_to "#{wine.name}", wine_path(wine) %></li>
         <% end %>
@@ -10,4 +10,4 @@
     </div>
 
     <button id='restart'><%= link_to 'New recommendation', root_path %></button>
-</body>
+</div>
