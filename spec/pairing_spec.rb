@@ -24,6 +24,8 @@ describe Pairing do
   let!(:sweet_potato) { double('Sweet potato', flavour: {sweet: 4, umami: 2.5, sour: 0, bitter: 0, spicy: 0 }) }
   let!(:mushrooms) { double('Mushrooms', flavour: {sweet: 0.5, umami: 5, sour: 0.5, bitter: 2, spicy: 0 }) }
   let!(:ceviche) { double("Ceviche", flavour: {spicy: 3, umami: 3, sour: 4.5, bitter: 0.5, sweet: 0}) }
+  let!(:rocket_salad) { double('Rocket Salad', flavour: {spicy: 0, umami: 2, sour: 1, bitter: 4, sweet: 1}) }
+  let!(:phaal) { double('Phaal', flavour: {spicy: 5, umami: 2, sour: 0, bitter: 0, sweet: 0}) }
 
   subject(:pairing) { described_class.new }
 
@@ -132,6 +134,28 @@ describe Pairing do
       allow(pairing).to receive(:food).and_return(ceviche)
       pairing.get_wine(wine_klass)
       criteria = 'acid >= 8.5 and acid <= 9.5'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
+    it 'should return a narrow range of wine if the strongest value is bitter' do
+      allow(pairing).to receive(:food).and_return(rocket_salad)
+      pairing.get_wine(wine_klass)
+      criteria = 'bitter >= 2.0 and bitter <= 3.0 and oaky >= 2.0 and oaky <= 3.0'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
+    it 'should return a narrow range of wine if the strongest value is umami' do
+      allow(pairing).to receive(:food).and_return(mushrooms)
+      pairing.get_wine(wine_klass)
+      criteria = 'fruity >= 9.5 and fruity <= 10.5 and oaky >= 7.0 and oaky <= 8.0'
+      expect(wine_klass).to have_received(:where).with(criteria)
+    end
+
+    it 'should return a narrow range of wine if the strongest value is spicy' do
+      allow(pairing).to receive(:food).and_return(phaal)
+      pairing.get_wine(wine_klass)
+      criteria = 'alcohol >= 1.5 and alcohol <= 2.5 and sweet >= 4.0 and sweet <= 6.0'
+      #low alcohol, mid sweet
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 

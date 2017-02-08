@@ -15,6 +15,12 @@ class Pairing < ApplicationRecord
       @wine = wine_klass.where(sweet_query)
     elsif strongest_flavour == :sour
       @wine = wine_klass.where(sour_query)
+    elsif strongest_flavour == :bitter
+      @wine = wine_klass.where(bitter_query)
+    elsif strongest_flavour == :umami
+      @wine = wine_klass.where(umami_query)
+    elsif strongest_flavour == :spicy
+      @wine = wine_klass.where(spicy_query)
     else
       @wine = wine_klass.where(MATCHES[food.flavour]).limit(3)
     end
@@ -35,15 +41,37 @@ class Pairing < ApplicationRecord
   private
 
   def sweet_query
-    lower = (food_flavours[:sweet] * 2) - FIRST_FLAVOUR_RANGE
-    upper = (food_flavours[:sweet] * 2) + FIRST_FLAVOUR_RANGE
+    lower = (food_flavours[:sweet].to_f * 2) - FIRST_FLAVOUR_RANGE
+    upper = (food_flavours[:sweet].to_f * 2) + FIRST_FLAVOUR_RANGE
     "sweet >= #{lower} and sweet <= #{upper}"
   end
 
   def sour_query
-    lower = (food_flavours[:sour] * 2) - FIRST_FLAVOUR_RANGE
-    upper = (food_flavours[:sour] * 2) + FIRST_FLAVOUR_RANGE
+    lower = (food_flavours[:sour].to_f * 2) - FIRST_FLAVOUR_RANGE
+    upper = (food_flavours[:sour].to_f * 2) + FIRST_FLAVOUR_RANGE
     "acid >= #{lower} and acid <= #{upper}"
+  end
+
+  def bitter_query
+    lower = ((1 / food_flavours[:bitter].to_f) * 10) - FIRST_FLAVOUR_RANGE
+    upper = ((1 / food_flavours[:bitter].to_f) * 10) + FIRST_FLAVOUR_RANGE
+    "bitter >= #{lower} and bitter <= #{upper} and oaky >= #{lower} and oaky <= #{upper}"
+  end
+
+  def umami_query
+    lower_fruity = (food_flavours[:umami].to_f * 2) - FIRST_FLAVOUR_RANGE
+    upper_fruity = (food_flavours[:umami].to_f * 2) + FIRST_FLAVOUR_RANGE
+    lower_oaky = (food_flavours[:umami].to_f * 1.5) - FIRST_FLAVOUR_RANGE
+    upper_oaky = (food_flavours[:umami].to_f * 1.5) + FIRST_FLAVOUR_RANGE
+    "fruity >= #{lower_fruity} and fruity <= #{upper_fruity} and oaky >= #{lower_oaky} and oaky <= #{upper_oaky}"
+  end
+
+  def spicy_query
+    lower_alcohol = ((1 / food_flavours[:spicy].to_f) * 10) - FIRST_FLAVOUR_RANGE
+    upper_alcohol = ((1 / food_flavours[:spicy].to_f) * 10) + FIRST_FLAVOUR_RANGE
+    lower_sweet = (5 - food_flavours[:spicy].to_f * 0.2)
+    upper_sweet = (5 + food_flavours[:spicy].to_f * 0.2)
+    "alcohol >= #{lower_alcohol} and alcohol <= #{upper_alcohol} and sweet >= #{lower_sweet} and sweet <= #{upper_sweet}"
   end
 
   MATCHES = {
