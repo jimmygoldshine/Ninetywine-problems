@@ -14,7 +14,7 @@
     <% @pairing.wine.each do |variety| %>
       <div class='barchart-container' id="chart-id-<%=chart_id%>">
         <% chart_id += 1 %>
-        <h2 class="barchart-title"><%= variety.name %></h2>
+        <h2 class="barchart-title"><%= variety.name.upcase %></h2>
         <%= column_chart ({"Sweet" => variety.sweet, "Herby" => variety.herby, "Bitter" => variety.bitter, "Fruity" => variety.fruity, "Oaky" => variety.oaky, "Acid" => variety.acid, "Alcohol" => variety.alcohol}) %>
       </div>
     <% end %>
