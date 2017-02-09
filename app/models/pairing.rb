@@ -34,13 +34,22 @@ class Pairing < ApplicationRecord
     eliminate_weak_flavours.sort_by { |key, value| value }.reverse.to_h
   end
 
-  def query_array
+  def query_hash
     index = 0
-    rank_flavours.collect do |flavour, strength|
-      query = method(flavour.to_s + "_query").call(index)
+    query = Hash.new
+    rank_flavours.each do |flavour, strength|
+      method(flavour.to_s + "_query").call(index, query)
       index += 1
-      query
     end
+    query
+  end
+
+  def query_array
+    array = []
+    query_hash.each do |key, value|
+      array << key.to_s + ' >= ' + value[:lower].to_s + ' and ' + key.to_s + ' <= ' + value[:upper].to_s
+    end
+    array
   end
 
   def query_builder
@@ -49,38 +58,41 @@ class Pairing < ApplicationRecord
 
   private
 
-  def sweet_query(index)
+  def sweet_query(index, hash)
     lower = (food_flavours[:sweet].to_f * 2) - FLAVOUR_RANGE[index]
     upper = (food_flavours[:sweet].to_f * 2) + FLAVOUR_RANGE[index]
-    "sweet >= #{lower} and sweet <= #{upper}"
+    hash[:sweet] = {lower: lower, upper: upper}
   end
 
-  def sour_query(index)
+  def sour_query(index, hash)
     lower = (food_flavours[:sour].to_f * 2) - FLAVOUR_RANGE[index]
     upper = (food_flavours[:sour].to_f * 2) + FLAVOUR_RANGE[index]
-    "acid >= #{lower} and acid <= #{upper}"
+    hash[:acid] = {lower: lower, upper: upper}
   end
 
-  def bitter_query(index)
+  def bitter_query(index, hash)
     lower = ((1 / food_flavours[:bitter].to_f) * 10) - FLAVOUR_RANGE[index]
     upper = ((1 / food_flavours[:bitter].to_f) * 10) + FLAVOUR_RANGE[index]
-    "bitter >= #{lower} and bitter <= #{upper} and oaky >= #{lower} and oaky <= #{upper}"
+    hash[:bitter] = {lower: lower, upper: upper}
+    hash[:oaky] = {lower: lower, upper: upper}
   end
 
-  def umami_query(index)
+  def umami_query(index, hash)
     lower_fruity = (food_flavours[:umami].to_f * 2) - FLAVOUR_RANGE[index]
     upper_fruity = (food_flavours[:umami].to_f * 2) + FLAVOUR_RANGE[index]
     lower_oaky = (food_flavours[:umami].to_f * 1.5) - FLAVOUR_RANGE[index]
     upper_oaky = (food_flavours[:umami].to_f * 1.5) + FLAVOUR_RANGE[index]
-    "fruity >= #{lower_fruity} and fruity <= #{upper_fruity} and oaky >= #{lower_oaky} and oaky <= #{upper_oaky}"
+    hash[:fruity] = {lower: lower_fruity, upper: upper_fruity}
+    hash[:oaky] = {lower: lower_oaky, upper: upper_oaky}
   end
 
-  def spicy_query(index)
+  def spicy_query(index, hash)
     lower_alcohol = ((1 / food_flavours[:spicy].to_f) * 10) - FLAVOUR_RANGE[index]
     upper_alcohol = ((1 / food_flavours[:spicy].to_f) * 10) + FLAVOUR_RANGE[index]
     lower_sweet = (5 - food_flavours[:spicy].to_f * 0.2)
     upper_sweet = (5 + food_flavours[:spicy].to_f * 0.2)
-    "alcohol >= #{lower_alcohol} and alcohol <= #{upper_alcohol} and sweet >= #{lower_sweet} and sweet <= #{upper_sweet}"
+    hash[:alcohol] = {lower: lower_alcohol, upper: upper_alcohol}
+    hash[:sweet] = {lower: lower_sweet, upper: upper_sweet}
   end
 
 end

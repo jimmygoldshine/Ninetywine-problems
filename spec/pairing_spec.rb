@@ -106,10 +106,18 @@ describe Pairing do
     end
   end
 
+  describe '#query_hash' do
+    it 'returns an hash of query criteria based on mathcing rules' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
+      query = {sweet: {lower: 7.0, upper: 9.0}, fruity: {lower: 3.0, upper: 7.0}, oaky: {lower: 1.75, upper: 5.75}}
+      expect(pairing.query_hash).to eq query
+    end
+  end
+
   describe '#query_array' do
     it 'returns an array of queries based on food flavours' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
-      expect(pairing.query_array).to eq ["sweet >= 7.0 and sweet <= 9.0", "fruity >= 3.0 and fruity <= 7.0 and oaky >= 1.75 and oaky <= 5.75"]
+      expect(pairing.query_array).to eq ["sweet >= 7.0 and sweet <= 9.0", "fruity >= 3.0 and fruity <= 7.0", "oaky >= 1.75 and oaky <= 5.75"]
     end
   end
 
