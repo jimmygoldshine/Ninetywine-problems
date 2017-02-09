@@ -30,6 +30,10 @@ class Pairing < ApplicationRecord
     food_flavours[strongest_flavour]
   end
 
+  def eliminate_weak_flavours
+    food_flavours.keep_if { |key, value| value >= 0.5 }
+  end
+
   private
 
   def sweet_query

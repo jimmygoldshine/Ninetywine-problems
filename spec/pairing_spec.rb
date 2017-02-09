@@ -50,7 +50,7 @@ describe Pairing do
 
   end
 
-  describe 'checking food characteristics' do
+  describe '#strongest_flavour' do
 
     it 'is able to determine when sweet is the strongest food characteristic' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
@@ -61,7 +61,6 @@ describe Pairing do
       allow(pairing).to receive(:food).and_return(mushrooms)
       expect(pairing.strongest_flavour).to eq :umami
     end
-
   end
 
   describe '#food_flavours' do
@@ -83,6 +82,20 @@ describe Pairing do
       allow(pairing).to receive(:food).and_return(mushrooms)
       expect(pairing.strongest_flavour_value).to eq 5
     end
+  end
+
+  describe '#eliminate_weak_flavours' do
+
+    it 'elimates the values of food characteristics that are lower than 0.5 using sweet potato as an example' do
+      allow(pairing).to receive(:food).and_return(sweet_potato)
+      expect(pairing.eliminate_weak_flavours).to eq({sweet:4, umami:2.5})
+    end
+
+    it 'elimates the values of food characteristics that are lower than 0.5 using mushrooms as an example' do
+      allow(pairing).to receive(:food).and_return(mushrooms)
+      expect(pairing.eliminate_weak_flavours).to eq({sweet:0.5, umami:5, sour:0.5, bitter:2})
+    end
+
   end
 
 end
