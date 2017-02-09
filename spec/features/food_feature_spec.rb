@@ -4,17 +4,16 @@ feature 'food features' do
 
   scenario 'enter only the name of your food' do
     visit('/pairings/new')
-    click_button('Start pairing!')
-    expect(page).to have_content("Tell us about your food")
+    click_button("S T A R T   P A I R I N G")
     expect(page).to have_css("input#food_name")
   end
 
   scenario 'sweetness field appears' do
     visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in "Name", with: "Sweet potato"
-    click_button('Next')
-    expect(page).to have_css("input#food_sweet")
+    click_button("S T A R T   P A I R I N G")
+    fill_in "What are you eating?", with: "Sweet potato"
+    click_button('N E X T')
+    expect(page).to have_css("input#sweet_slider")
   end
 
 end
