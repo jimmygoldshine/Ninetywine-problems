@@ -7,7 +7,7 @@ class Pairing < ApplicationRecord
   has_one :food
 
   def get_wine(wine_klass)
-    @wine = wine_klass.where(query_builder)
+    @wine = wine_klass.where(query_builder).limit(3)
   end
 
   def food_flavours
