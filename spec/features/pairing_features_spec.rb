@@ -22,185 +22,87 @@ feature 'pairng with instances of food' do
   end
 
   it 'user is on a single results page and wants to go back to the home page to start again' do
-    visit '/'
-    click_button 'Start pairing'
-    fill_in :food_name, with: "A sweet food"
-    fill_in :food_sweet, with: 4
-    fill_in :food_umami, with: 0
-    fill_in :food_spicy, with: 0
-    fill_in :food_sour, with: 0
-    fill_in :food_bitter, with: 0
-    click_button "Submit"
+    start_pairing
+    create_pairing(name: 'A sweet food', sweet: 4)
     expect(page).to have_link 'Start pairing again!'
 
   end
 
   it 'returns a list of wines for spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Spicy'
-    fill_in 'Spicy', with: 5
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
+    start_pairing
+    create_pairing(name: 'A spicy food', spicy: 5)
     expect(page).to have_content("Zinfandel")
   end
 
   it 'returns a list of wines for sweet food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Sweet'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 5
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Riesling")
+    start_pairing
+    create_pairing(name: 'A sweet food', sweet: 5)
+    expect(page).to have_content("Gewurztraminer")
   end
 
   it 'returns a list of wines for bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Bitter'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 5
-    fill_in'Umami', with: 0
-    click_button('Submit')
+    start_pairing
+    create_pairing(name: 'A bitter food', bitter: 5)
     expect(page).to have_content("Pinot Noir")
   end
 
   it 'returns a list of wines for sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Sour'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 5
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
+    start_pairing
+    create_pairing(name: 'A sour food', sour: 5)
     expect(page).to have_content("Grenache")
   end
 
   it 'returns a list of wines for umami food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 5
-    click_button('Submit')
-    expect(page).to have_content("Sauvignon Blanc")
+    start_pairing
+    create_pairing(name: 'An umami food', umami: 5)
+    expect(page).to have_content("Auslese")
   end
 
   it 'returns a list of wines for umami and sweet food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 3
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 3
-    click_button('Submit')
-    expect(page).to have_content("Pinotage")
+    start_pairing
+    create_pairing(name: 'An umami and sweet food', umami: 3, sweet: 3)
+    expect(page).to have_content("Muscat")
   end
 
   it 'returns a list of wines for umami and sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 3
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 3
-    click_button('Submit')
-    expect(page).to have_content("Cava")
+    start_pairing
+    create_pairing(name: 'An umami and sour food', umami: 3, sour: 3)
+    expect(page).to have_content("Sauternes")
   end
 
   it 'returns a list of wines for umami and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 3
-    fill_in'Umami', with: 3
-    click_button('Submit')
-    expect(page).to have_content("Gamay")
+    start_pairing
+    create_pairing(name: 'An umami and bitter food', umami: 3, bitter: 3)
+    expect(page).to have_content("Muscat")
   end
 
   it 'returns a list of wines for sweet and sour food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 3
-    fill_in'Sour', with: 3
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Zinfandel")
+    start_pairing
+    create_pairing(name: 'A sweet and sour food', sweet: 3, sour: 3)
+    expect(page).to have_content("Gewurztraminer")
   end
 
   it 'returns a list of wines for sweet and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 3
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 3
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Beaujolias")
+    start_pairing
+    create_pairing(name: 'A sweet and bitter food', sweet: 3, bitter: 3)
+    expect(page).to have_content("Sauternes")
   end
 
   it 'returns a list of wines for sweet and spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 3
-    fill_in'Sweet', with: 3
-    fill_in'Sour', with: 0
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Zinfandel")
+    start_pairing
+    create_pairing(name: 'A sweet and spicy food', sweet: 3, spicy: 3)
+    expect(page).to have_content("Muscat")
   end
 
   it 'returns a list of wines for sour and bitter food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 0
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 3
-    fill_in'Bitter', with: 3
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Lambrusco")
+    start_pairing
+    create_pairing(name: 'A sour and bitter food', sour: 3, bitter: 3)
+    expect(page).to have_content("Gewurztraminer")
   end
 
   it 'returns a list of wines for sour and spicy food' do
-    visit('/pairings/new')
-    click_button('Start pairing!')
-    fill_in 'Name', with: 'Umami'
-    fill_in 'Spicy', with: 3
-    fill_in'Sweet', with: 0
-    fill_in'Sour', with: 3
-    fill_in'Bitter', with: 0
-    fill_in'Umami', with: 0
-    click_button('Submit')
-    expect(page).to have_content("Lambrusco")
+    start_pairing
+    create_pairing(name: 'A sour and spicy food', sour: 3, spicy: 3)
+    expect(page).to have_content("Gewurztraminer")
   end
 end
