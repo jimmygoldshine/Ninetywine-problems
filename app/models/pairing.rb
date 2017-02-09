@@ -2,32 +2,20 @@ class Pairing < ApplicationRecord
 
   attr_accessor :wine
 
-  FLAVOUR_RANGE = [1, 2, 3, 4, 5]
+  FLAVOUR_RANGE = [2, 2.5, 3, 4, 5]
 
   has_one :food
 
   def get_wine(wine_klass)
     @wine = wine_klass.where(query_builder)
-    # @wine = wine_klass.where(sour_query) if strongest_flavour == :sour
-    # @wine = wine_klass.where(bitter_query) if strongest_flavour == :bitter
-    # @wine = wine_klass.where(umami_query) if strongest_flavour == :umami
-    # @wine = wine_klass.where(spicy_query) if strongest_flavour == :spicy
-  end
-
-  def strongest_flavour
-    food_flavours.key(food_flavours.values.max)
   end
 
   def food_flavours
     self.food.flavour
   end
 
-  def strongest_flavour_value
-    food_flavours[strongest_flavour]
-  end
-
   def eliminate_weak_flavours
-    food_flavours.keep_if { |key, value| value >= 0.5 }
+    food_flavours.keep_if { |key, value| value >= 1.0 }
   end
 
   def rank_flavours
