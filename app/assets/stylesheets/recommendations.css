@@ -3,6 +3,12 @@ a:link, a:visited {
   text-decoration: none;
 }
 
+#recommendation {
+  font-family: 'Lato', serif;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #wine-list {
   padding: 0;
   margin: 10% 0 0 0;
@@ -26,17 +32,18 @@ a:link, a:visited {
 
 #restart {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+  position: fixed;
+  bottom: 10%;
+  left: 15%;
   background-color: #722f37;
   color: #ffffff;
   font-family: 'Lato', serif;
   font-size: 10px;
+  text-decoration: none;
   border: solid #56242a 0px;
 }
 
-#variety-name {
-  font-family: 'Lato';
+.barchart-title {
+  font-family: 'Lato', serif;
   font-size: 15px;
 }
