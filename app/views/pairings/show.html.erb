@@ -1,13 +1,24 @@
-<body>
+<div id=wrapper>
   <h2></h2>
     <h1>Recommended wines for <%= @pairing.food.name.downcase %></h1>
       <div id="container">
-      <ul>
+      <ul id="wine-list">
+        <% wine_id = 0 %>
         <% @pairing.wine.each do |wine| %>
-        <li class="button"><%= link_to "#{wine.name}", wine_path(wine) %></li>
+        <% wine_id += 1 %>
+        <li class="button" id="wine-id-<%=wine_id%>"><%="#{wine.name}"%></li>
         <% end %>
       </ul>
     </div>
 
+    <% chart_id = 1 %>
+    <% @pairing.wine.each do |variety| %>
+      <div class='barchart-container' id="chart-id-<%=chart_id%>">
+        <% chart_id += 1 %>
+        <h2 class="barchart-title"><%= variety.name %></h2>
+        <%= column_chart ({"Sweet" => variety.sweet, "Herby" => variety.herby, "Bitter" => variety.bitter, "Fruity" => variety.fruity, "Oaky" => variety.oaky, "Acid" => variety.acid, "Alcohol" => variety.alcohol}) %>
+      </div>
+    <% end %>
+
     <button id='restart'><%= link_to 'New recommendation', root_path %></button>
-</body>
+</div>
