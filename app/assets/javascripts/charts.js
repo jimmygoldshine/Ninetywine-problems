@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  $("#chart-id-1").hide();
   $("#chart-id-2").hide();
   $("#chart-id-3").hide();
 
