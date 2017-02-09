@@ -17,51 +17,10 @@ describe Pairing do
     it 'should return a narrow range of wine if the strongest value is sweet' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
       pairing.get_wine(wine_klass)
-      criteria = "sweet >= 7.0 and sweet <= 9.0 and fruity >= 3.0 and fruity <= 7.0 and oaky >= 1.75 and oaky <= 5.75"
+      criteria = "sweet >= 6.0 and sweet <= 10.0 and fruity >= 2.5 and fruity <= 7.5 and oaky >= 1.25 and oaky <= 6.25"
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
-    it 'should return a narrow range of wine if the strongest value is sour' do
-      allow(pairing).to receive(:food).and_return(ceviche)
-      pairing.get_wine(wine_klass)
-      criteria = 'acid >= 8.0 and acid <= 10.0'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should return a narrow range of wine if the strongest value is bitter' do
-      allow(pairing).to receive(:food).and_return(rocket_salad)
-      pairing.get_wine(wine_klass)
-      criteria = 'bitter >= 1.5 and bitter <= 3.5 and oaky >= 1.5 and oaky <= 3.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should return a narrow range of wine if the strongest value is umami' do
-      allow(pairing).to receive(:food).and_return(mushrooms)
-      pairing.get_wine(wine_klass)
-      criteria = 'fruity >= 9.0 and fruity <= 11.0 and oaky >= 6.5 and oaky <= 8.5'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-    it 'should return a narrow range of wine if the strongest value is spicy' do
-      allow(pairing).to receive(:food).and_return(phaal)
-      pairing.get_wine(wine_klass)
-      criteria = 'alcohol >= 1.0 and alcohol <= 3.0 and sweet >= 4.0 and sweet <= 6.0'
-      expect(wine_klass).to have_received(:where).with(criteria)
-    end
-
-  end
-
-  describe '#strongest_flavour' do
-
-    it 'is able to determine when sweet is the strongest food characteristic' do
-      allow(pairing).to receive(:food).and_return(sweet_potato)
-      expect(pairing.strongest_flavour).to eq :sweet
-    end
-
-    it 'is able to determine when umami is the strongest food characteristic' do
-      allow(pairing).to receive(:food).and_return(mushrooms)
-      expect(pairing.strongest_flavour).to eq :umami
-    end
   end
 
   describe '#food_flavours' do
@@ -69,19 +28,6 @@ describe Pairing do
     it 'is able to determine when sweet is the strongest food characteristic' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
       expect(pairing.food_flavours).to eq({sweet: 4, umami: 2.5, sour: 0, bitter: 0, spicy: 0})
-    end
-  end
-
-  describe '#strongest_flavour_value' do
-
-    it 'returns 4 when checking the value of the sweet potato double' do
-      allow(pairing).to receive(:food).and_return(sweet_potato)
-      expect(pairing.strongest_flavour_value).to eq 4
-    end
-
-    it 'returns 4 when checking the value of the sweet potato double' do
-      allow(pairing).to receive(:food).and_return(mushrooms)
-      expect(pairing.strongest_flavour_value).to eq 5
     end
   end
 
@@ -94,7 +40,7 @@ describe Pairing do
 
     it 'elimates the values of food characteristics that are lower than 0.5 using mushrooms as an example' do
       allow(pairing).to receive(:food).and_return(mushrooms)
-      expect(pairing.eliminate_weak_flavours).to eq({sweet:0.5, umami:5, sour:0.5, bitter:2})
+      expect(pairing.eliminate_weak_flavours).to eq({umami:5, bitter:2})
     end
 
   end
@@ -108,15 +54,15 @@ describe Pairing do
   end
 
   describe '#query_hash' do
-    it 'returns an hash of query criteria based on matching rules' do
+    it 'returns a hash of query criteria based on matching rules' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
-      query = {sweet: {lower: 7.0, upper: 9.0}, fruity: {lower: 3.0, upper: 7.0}, oaky: {lower: 1.75, upper: 5.75}}
+      query = {sweet: {lower: 6.0, upper: 10.0}, fruity: {lower: 2.5, upper: 7.5}, oaky: {lower: 1.25, upper: 6.25}}
       expect(pairing.query_hash).to eq query
     end
 
     it 'should overwrite the upper and lower values with averages when they already exist' do
       allow(pairing).to receive(:food).and_return(linguine)
-      query = {bitter: {lower:1.5, upper:3.5}, oaky: {lower:2.0, upper:5.0}, fruity: {lower:4.0, upper:8.0}}
+      query = {bitter: {lower:0.5, upper:4.5}, oaky: {lower:1.25, upper:5.75}, fruity: {lower:3.5, upper:8.5}}
       expect(pairing.query_hash).to eq query
     end
 
@@ -125,14 +71,14 @@ describe Pairing do
   describe '#query_array' do
     it 'returns an array of queries based on food flavours' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
-      expect(pairing.query_array).to eq ["sweet >= 7.0 and sweet <= 9.0", "fruity >= 3.0 and fruity <= 7.0", "oaky >= 1.75 and oaky <= 5.75"]
+      expect(pairing.query_array).to eq ["sweet >= 6.0 and sweet <= 10.0", "fruity >= 2.5 and fruity <= 7.5", "oaky >= 1.25 and oaky <= 6.25"]
     end
   end
 
   describe '#query_builder' do
     it 'returns a string containing the full query needed to return wines from the database' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
-      expect(pairing.query_builder).to eq 'sweet >= 7.0 and sweet <= 9.0 and fruity >= 3.0 and fruity <= 7.0 and oaky >= 1.75 and oaky <= 5.75'
+      expect(pairing.query_builder).to eq 'sweet >= 6.0 and sweet <= 10.0 and fruity >= 2.5 and fruity <= 7.5 and oaky >= 1.25 and oaky <= 6.25'
     end
   end
 
