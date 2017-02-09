@@ -32,8 +32,8 @@ a:link, a:visited {
 
 #restart {
   display: block;
-  position: fixed;
-  bottom: 10%;
+  position: relative;
+  top: 20%;
   left: 15%;
   background-color: #722f37;
   color: #ffffff;
