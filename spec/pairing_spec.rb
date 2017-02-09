@@ -8,6 +8,7 @@ describe Pairing do
   let!(:ceviche) { double("Ceviche", flavour: {spicy: 3, umami: 3, sour: 4.5, bitter: 0.5, sweet: 0}) }
   let!(:rocket_salad) { double('Rocket Salad', flavour: {spicy: 0, umami: 2, sour: 1, bitter: 4, sweet: 1}) }
   let!(:phaal) { double('Phaal', flavour: {spicy: 5, umami: 2, sour: 0, bitter: 0, sweet: 0}) }
+  let!(:linguine) { double('Linguine', flavour: {spicy: 0, umami: 3, sour: 0.4, bitter: 4, sweet: 0}) }
 
   subject(:pairing) { described_class.new }
 
@@ -16,7 +17,7 @@ describe Pairing do
     it 'should return a narrow range of wine if the strongest value is sweet' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
       pairing.get_wine(wine_klass)
-      criteria = 'sweet >= 7.0 and sweet <= 9.0'
+      criteria = "sweet >= 7.0 and sweet <= 9.0 and fruity >= 3.0 and fruity <= 7.0 and oaky >= 1.75 and oaky <= 5.75"
       expect(wine_klass).to have_received(:where).with(criteria)
     end
 
@@ -107,11 +108,18 @@ describe Pairing do
   end
 
   describe '#query_hash' do
-    it 'returns an hash of query criteria based on mathcing rules' do
+    it 'returns an hash of query criteria based on matching rules' do
       allow(pairing).to receive(:food).and_return(sweet_potato)
       query = {sweet: {lower: 7.0, upper: 9.0}, fruity: {lower: 3.0, upper: 7.0}, oaky: {lower: 1.75, upper: 5.75}}
       expect(pairing.query_hash).to eq query
     end
+
+    it 'should overwrite the upper and lower values with averages when they already exist' do
+      allow(pairing).to receive(:food).and_return(linguine)
+      query = {bitter: {lower:1.5, upper:3.5}, oaky: {lower:2.0, upper:5.0}, fruity: {lower:4.0, upper:8.0}}
+      expect(pairing.query_hash).to eq query
+    end
+
   end
 
   describe '#query_array' do
@@ -127,5 +135,7 @@ describe Pairing do
       expect(pairing.query_builder).to eq 'sweet >= 7.0 and sweet <= 9.0 and fruity >= 3.0 and fruity <= 7.0 and oaky >= 1.75 and oaky <= 5.75'
     end
   end
+
+
 
 end

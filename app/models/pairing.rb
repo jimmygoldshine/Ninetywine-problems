@@ -7,11 +7,11 @@ class Pairing < ApplicationRecord
   has_one :food
 
   def get_wine(wine_klass)
-    @wine = wine_klass.where(sweet_query) if strongest_flavour == :sweet
-    @wine = wine_klass.where(sour_query) if strongest_flavour == :sour
-    @wine = wine_klass.where(bitter_query) if strongest_flavour == :bitter
-    @wine = wine_klass.where(umami_query) if strongest_flavour == :umami
-    @wine = wine_klass.where(spicy_query) if strongest_flavour == :spicy
+    @wine = wine_klass.where(query_builder)
+    # @wine = wine_klass.where(sour_query) if strongest_flavour == :sour
+    # @wine = wine_klass.where(bitter_query) if strongest_flavour == :bitter
+    # @wine = wine_klass.where(umami_query) if strongest_flavour == :umami
+    # @wine = wine_klass.where(spicy_query) if strongest_flavour == :spicy
   end
 
   def strongest_flavour
@@ -56,25 +56,36 @@ class Pairing < ApplicationRecord
     query_array.join(' and ')
   end
 
+  def conflict_resolver(hash, flavour, lower, upper)
+    if hash.has_key?(flavour)
+      average_lower = (lower + hash[flavour][:lower].to_f) / 2
+      average_upper = (upper + hash[flavour][:upper].to_f) / 2
+      {lower: average_lower, upper: average_upper}
+    else
+      {lower: lower, upper: upper}
+    end
+  end
+
+
   private
 
   def sweet_query(index, hash)
     lower = (food_flavours[:sweet].to_f * 2) - FLAVOUR_RANGE[index]
     upper = (food_flavours[:sweet].to_f * 2) + FLAVOUR_RANGE[index]
-    hash[:sweet] = {lower: lower, upper: upper}
+    hash[:sweet] = conflict_resolver(hash, :sweet, lower, upper)
   end
 
   def sour_query(index, hash)
     lower = (food_flavours[:sour].to_f * 2) - FLAVOUR_RANGE[index]
     upper = (food_flavours[:sour].to_f * 2) + FLAVOUR_RANGE[index]
-    hash[:acid] = {lower: lower, upper: upper}
+    hash[:acid] = conflict_resolver(hash, :acid, lower, upper)
   end
 
   def bitter_query(index, hash)
     lower = ((1 / food_flavours[:bitter].to_f) * 10) - FLAVOUR_RANGE[index]
     upper = ((1 / food_flavours[:bitter].to_f) * 10) + FLAVOUR_RANGE[index]
-    hash[:bitter] = {lower: lower, upper: upper}
-    hash[:oaky] = {lower: lower, upper: upper}
+    hash[:bitter] = conflict_resolver(hash, :bitter, lower, upper)
+    hash[:oaky] = conflict_resolver(hash, :oaky, lower, upper)
   end
 
   def umami_query(index, hash)
@@ -82,8 +93,8 @@ class Pairing < ApplicationRecord
     upper_fruity = (food_flavours[:umami].to_f * 2) + FLAVOUR_RANGE[index]
     lower_oaky = (food_flavours[:umami].to_f * 1.5) - FLAVOUR_RANGE[index]
     upper_oaky = (food_flavours[:umami].to_f * 1.5) + FLAVOUR_RANGE[index]
-    hash[:fruity] = {lower: lower_fruity, upper: upper_fruity}
-    hash[:oaky] = {lower: lower_oaky, upper: upper_oaky}
+    hash[:fruity] = conflict_resolver(hash, :fruity, lower_fruity, upper_fruity)
+    hash[:oaky] = conflict_resolver(hash, :oaky, lower_oaky, upper_oaky)
   end
 
   def spicy_query(index, hash)
@@ -91,8 +102,8 @@ class Pairing < ApplicationRecord
     upper_alcohol = ((1 / food_flavours[:spicy].to_f) * 10) + FLAVOUR_RANGE[index]
     lower_sweet = (5 - food_flavours[:spicy].to_f * 0.2)
     upper_sweet = (5 + food_flavours[:spicy].to_f * 0.2)
-    hash[:alcohol] = {lower: lower_alcohol, upper: upper_alcohol}
-    hash[:sweet] = {lower: lower_sweet, upper: upper_sweet}
+    hash[:alcohol] = conflict_resolver(hash, :alcohol, lower_alcohol, upper_alcohol)
+    hash[:sweet] = conflict_resolver(hash, :sweet, lower_sweet, upper_sweet)
   end
 
 end
