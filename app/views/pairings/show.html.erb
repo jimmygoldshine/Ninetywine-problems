@@ -4,17 +4,16 @@
       <div id="container">
       <ul id="wine-list">
         <% @pairing.wine.each do |wine| %>
-        <li class="button"><%= link_to "#{wine.name}", wine_path(wine) %></li>
+        <li class="button"><%= link_to "#{wine.name}"%></li>
         <% end %>
       </ul>
     </div>
 
     <% @pairing.wine.each do |variety| %>
-      <h2><%= variety.name %></h2>
+      <h2 id='variety-name'><%= variety.name %></h2>
       <%= column_chart ({"Sweet" => variety.sweet, "Herby" => variety.herby, "Bitter" => variety.bitter, "Fruity" => variety.fruity, "Oaky" => variety.oaky, "Acid" => variety.acid, "Alcohol" => variety.alcohol}) %>
     <% end %>
-    <%= link_to 'Start pairing again!', root_path %>
 
 
-    <button id='restart'><%= link_to 'New recommendation', root_path %></button>
+    <button id='restart'><%= link_to 'NEW RECOMMENDATION', root_path %></button>
 </div>
