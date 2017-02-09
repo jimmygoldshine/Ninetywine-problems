@@ -22,9 +22,9 @@
 .highcharts-yaxis .highcharts-axis-line {
 	stroke-width: 2px;
 }
-tspan {
-  color: white;
-}
+
 .highcharts-axis-labels {
-  color: white;
+  fill: white;
+  stroke: white;
+  stroke-width: 1px;
 }
