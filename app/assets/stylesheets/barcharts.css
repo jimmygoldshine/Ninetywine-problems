@@ -26,10 +26,12 @@
 
 .highcharts-yaxis .highcharts-axis-line {
 	stroke-width: 2px;
+	max: 10;
 }
 
 .highcharts-axis-labels {
   fill: white;
   stroke: white;
-  stroke-width: 1px;
+  stroke-width: 0.8px;
+	font-family: 'Lato'
 }
