@@ -22,6 +22,7 @@ a:link, a:visited {
   list-style-type: none;
   background-color: #722f37;
   font-family: 'Lato', serif;
+  text-transform: uppercase;
   color: #ffffff;
   font-size: 12px;
   margin: 0px 0px 10px 0px;
